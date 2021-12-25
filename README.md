@@ -1,5 +1,5 @@
- 
-
+# Some Strange Game
+Pretty strange.
 
 > Open this page at [https://samrcode.github.io/somestrangegame/](https://samrcode.github.io/somestrangegame/)
 
@@ -12,7 +12,8 @@ This repository can be added as an **extension** in MakeCode.
 * click on **Extensions** under the gearwheel menu
 * search for **https://github.com/samrcode/somestrangegame** and import
 
-## Edit this project ![Build status badge](https://github.com/samrcode/somestrangegame/workflows/MakeCode/badge.svg)
+## Edit this project 
+![Build status badge](https://github.com/samrcode/somestrangegame/workflows/MakeCode/badge.svg)
 
 To edit this repository in MakeCode.
 
@@ -27,7 +28,10 @@ This image may take a few minutes to refresh.
 
 ![A rendered view of the blocks](https://github.com/samrcode/somestrangegame/raw/master/.github/makecode/blocks.png)
 
+<!--
 #### Metadata (used for search, rendering)
 
 * for PXT/arcade
 <script src="https://makecode.com/gh-pages-embed.js"></script><script>makeCodeRender("{{ site.makecode.home_url }}", "{{ site.github.owner_name }}/{{ site.github.repository_name }}");</script>
+
+-->

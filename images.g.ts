@@ -103,19 +103,38 @@ f d f 4 2 2 2 2 2 2 2 2 2 2 f .
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . 7 7 . . 
-. . . . . . . . . . . . 7 7 . . 
-. f f f f f f f f f 7 7 7 7 7 7 
-. . f 6 6 6 6 6 6 6 7 7 7 7 7 7 
-. . . f 8 8 9 9 9 9 9 9 7 7 . . 
-. . f 6 6 6 6 6 6 6 6 6 7 7 . . 
-. f f f f f f f f f f f . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
+. . . . . . . . . . f f f f . . 
+. . . . . . . . . . f 7 7 f . . 
+. . . . . . . . f f f 7 7 f f f 
+f f f f f f f f f 7 7 7 7 7 7 f 
+. f 6 6 6 6 6 6 f 7 7 7 7 7 7 f 
+. . f 8 8 9 9 9 f f f 7 7 f f f 
+. f 6 6 6 6 6 6 6 6 f 7 7 f . . 
+f f f f f f f f f f f f f f . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`;
+            case "image7":
+            case "error":return img`
+2 2 2 2 f 2 2 2 2 f 2 2 2 2 f 2 
+2 f f f f 2 f f 2 f 2 f f 2 f 2 
+2 2 2 2 f 2 2 2 2 f 2 2 2 2 f 2 
+2 f f f f 2 2 f f f 2 2 f f f f 
+2 2 2 2 f 2 f 2 2 f 2 f 2 2 f 2 
+f f f f f f f f f f f f f f f f 
+2 2 2 f 2 2 2 f 2 2 2 f 2 2 2 f 
+2 f f f 2 f f f 2 f f f 2 f f f 
+2 2 2 f 2 2 2 f 2 2 2 f 2 f f f 
+f f 2 f 2 f f f 2 f f f 2 f f f 
+2 2 2 f 2 2 2 f 2 2 2 f 2 2 2 f 
+f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f 
+f f f f f f f f f f f f f f f f 
 `;
         }
         return null;
@@ -896,76 +915,6 @@ f 2 2 f f f 2 2 2 2 2 f f f 2 f
 . 8 . . f f f f f f f f . . 8 . 
 8 . . . . . . . . . . . . . . 8 
 `];
-            case "projectileAddAnim":
-            case "anim5":return [img`
-. . . . . f f f f f f f . . . . 
-. . . . f e e 2 2 2 2 2 f . . . 
-. . . . f e 2 2 2 2 2 2 f . . . 
-. . f f f f f f f f f f f . . . 
-. . . . . f d f d f d f . . . . 
-. . . . . f d f d f d f . . . . 
-. 8 8 8 . f d d d d d f . . . . 
-8 6 8 . . . f f f f f . . . . . 
-. 8 8 8 f f e 2 2 2 2 f f f f . 
-. f d f 2 2 2 2 2 2 2 2 2 2 2 f 
-. . f f f f 2 2 2 2 2 f f f 2 f 
-. . . . . f 2 2 2 2 2 f . f f f 
-. . . . . f f f f f f f . f d f 
-. . . . . f 8 6 f f 8 6 . . f . 
-. . . . . . f f . . f f . . . . 
-. . . . . . . . . . . . . . . . 
-`, img`
-. . . . . f f f f f f f . . . . 
-. . . . f e e 2 2 2 2 2 f . . . 
-. . . . f e 2 2 2 2 2 2 f . . . 
-. . f f f f f f f f f f f . . . 
-. . . . . f d f d f d f . . . . 
-. . . . . f d f d f d f . . . . 
-. 8 8 8 . f d d d d d f . . . . 
-8 6 8 . . . f f f f f . . . . . 
-. 8 8 8 f f e 2 2 2 2 f f f f . 
-. f d f 2 2 2 2 2 2 2 2 2 2 2 f 
-. . f f f f 2 2 2 2 2 f f f 2 f 
-. . . . . f 2 2 2 2 2 f . f f f 
-. . . . . f f f f f f f . f d f 
-. . . . . f 8 6 f f 8 6 . . f . 
-. . . . . . f f . . f f . . . . 
-. . . . . . . . . . . . . . . . 
-`, img`
-. . . . . f f f f f f f . . . . 
-. . . . f e e 2 2 2 2 2 f . . . 
-. . . . f e 2 2 2 2 2 2 f . . . 
-. . f f f f f f f f f f f . . . 
-. . . . . f d f d f d f . . . . 
-. 8 8 8 . f d f d f d f . . . . 
-8 6 8 . . f d d d d d f . . . . 
-. 8 8 8 . . f f f f f . . . . . 
-. f d f f f e 2 2 2 2 f f f f . 
-. . f f 2 2 2 2 2 2 2 2 2 2 2 f 
-. . . . f f 2 2 2 2 2 f f f 2 f 
-. . . . . f 2 2 2 2 2 f . f f f 
-. . . . . f f f f f f f . f d f 
-. . . . . f 8 6 f f 8 6 . . f . 
-. . . . . . f f . . f f . . . . 
-. . . . . . . . . . . . . . . . 
-`, img`
-. . . . . f f f f f f f . . . . 
-. . . . f e e 2 2 2 2 2 f . . . 
-. . . . f e 2 2 2 2 2 2 f . . . 
-. . f f f f f f f f f f f . . . 
-. . . . . f d f d f d f . . . . 
-. . . . . f d f d f d f . . . . 
-. 8 8 8 . f d d d d d f . . . . 
-8 6 8 . . . f f f f f . . . . . 
-. 8 8 8 f f e 2 2 2 2 f f f f . 
-. f d f 2 2 2 2 2 2 2 2 2 2 2 f 
-. . f f f f 2 2 2 2 2 f f f 2 f 
-. . . . . f 2 2 2 2 2 f . f f f 
-. . . . . f f f f f f f . f d f 
-. . . . . f 8 6 f f 8 6 . . f . 
-. . . . . . f f . . f f . . . . 
-. . . . . . . . . . . . . . . . 
-`];
             case "projectileThrow":
             case "anim6":return [img`
 . . . . . f f f f f f f . . . . 
@@ -1069,6 +1018,93 @@ f 2 2 f f f 2 2 2 2 2 f f f 2 f
 . . . . . f 8 6 f f 8 6 . . f . 
 . . . . . . f f . . f f . 8 8 8 
 . . . . . . . . . . . . . . 8 6 
+`, img`
+. . . . . f f f f f f f . . . . 
+. . . . f e e 2 2 2 2 2 f . . . 
+. . . . f e 2 2 2 2 2 2 f . . . 
+. . f f f f f f f f f f f . . . 
+. . . . . f d f d f d f . . . . 
+. . . . . f d f d f d f . . . . 
+. . . . . f d d d d d f . . . . 
+. . f . . . f f f f f . . . . . 
+. f d f f f e 2 2 2 2 f f f f . 
+. f d f 2 2 2 2 2 2 2 2 2 2 2 f 
+. . f f f f 2 2 2 2 2 f f f 2 f 
+. . . . . f 2 2 2 2 2 f . f f f 
+. . . . . f f f f f f f . f d f 
+. . . . . f 8 6 f f 8 6 . . f . 
+. . . . . . f f . . f f . . . . 
+. . . . . . . . . . . . . . . . 
+`];
+            case "projectileAddAnim":
+            case "anim5":return [img`
+. . . . . f f f f f f f . . . . 
+. . . . f e e 2 2 2 2 2 f . . . 
+. . . . f e 2 2 2 2 2 2 f . . . 
+. . f f f f f f f f f f f . . . 
+. . . . . f d f d f d f . . . . 
+. . . . . f d f d f d f . . . . 
+. 8 8 8 . f d d d d d f . . . . 
+8 6 8 . . . f f f f f . . . . . 
+. 8 8 8 f f e 2 2 2 2 f f f f . 
+. f d f 2 2 2 2 2 2 2 2 2 2 2 f 
+. . f f f f 2 2 2 2 2 f f f 2 f 
+. . . . . f 2 2 2 2 2 f . f f f 
+. . . . . f f f f f f f . f d f 
+. . . . . f 8 6 f f 8 6 . . f . 
+. . . . . . f f . . f f . . . . 
+. . . . . . . . . . . . . . . . 
+`, img`
+. . . . . f f f f f f f . . . . 
+. . . . f e e 2 2 2 2 2 f . . . 
+. . . . f e 2 2 2 2 2 2 f . . . 
+. . f f f f f f f f f f f . . . 
+. . . . . f d f d f d f . . . . 
+. . . . . f d f d f d f . . . . 
+. 8 8 8 . f d d d d d f . . . . 
+8 6 8 . . . f f f f f . . . . . 
+. 8 8 8 f f e 2 2 2 2 f f f f . 
+. f d f 2 2 2 2 2 2 2 2 2 2 2 f 
+. . f f f f 2 2 2 2 2 f f f 2 f 
+. . . . . f 2 2 2 2 2 f . f f f 
+. . . . . f f f f f f f . f d f 
+. . . . . f 8 6 f f 8 6 . . f . 
+. . . . . . f f . . f f . . . . 
+. . . . . . . . . . . . . . . . 
+`, img`
+. . . . . f f f f f f f . . . . 
+. . . . f e e 2 2 2 2 2 f . . . 
+. . . . f e 2 2 2 2 2 2 f . . . 
+. . f f f f f f f f f f f . . . 
+. . . . . f d f d f d f . . . . 
+. 8 8 8 . f d f d f d f . . . . 
+8 6 8 . . f d d d d d f . . . . 
+. 8 8 8 . . f f f f f . . . . . 
+. f d f f f e 2 2 2 2 f f f f . 
+. . f f 2 2 2 2 2 2 2 2 2 2 2 f 
+. . . . f f 2 2 2 2 2 f f f 2 f 
+. . . . . f 2 2 2 2 2 f . f f f 
+. . . . . f f f f f f f . f d f 
+. . . . . f 8 6 f f 8 6 . . f . 
+. . . . . . f f . . f f . . . . 
+. . . . . . . . . . . . . . . . 
+`, img`
+. . . . . f f f f f f f . . . . 
+. . . . f e e 2 2 2 2 2 f . . . 
+. . . . f e 2 2 2 2 2 2 f . . . 
+. . f f f f f f f f f f f . . . 
+. . . . . f d f d f d f . . . . 
+. . . . . f d f d f d f . . . . 
+. 8 8 8 . f d d d d d f . . . . 
+8 6 8 . . . f f f f f . . . . . 
+. 8 8 8 f f e 2 2 2 2 f f f f . 
+. f d f 2 2 2 2 2 2 2 2 2 2 2 f 
+. . f f f f 2 2 2 2 2 f f f 2 f 
+. . . . . f 2 2 2 2 2 f . f f f 
+. . . . . f f f f f f f . f d f 
+. . . . . f 8 6 f f 8 6 . . f . 
+. . . . . . f f . . f f . . . . 
+. . . . . . . . . . . . . . . . 
 `, img`
 . . . . . f f f f f f f . . . . 
 . . . . f e e 2 2 2 2 2 f . . . 

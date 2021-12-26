@@ -34,7 +34,7 @@ apple.setPosition(randomLocationX, randomLocationY)
 randomLocationX = Math.floor(Math.randomRange(0, 64) * 4)
 randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
 enemy.setPosition(randomLocationX, randomLocationY)
-let enemyLives = 3
+let enemyLives = 5
 // +1 Projectile Setup
 randomLocationX = Math.floor(Math.randomRange(0, 64) * 4)
 randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
@@ -47,6 +47,26 @@ randomLocationX = Math.floor(Math.randomRange(0, 64) * 4)
 randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
 emerald.setPosition(randomLocationX, randomLocationY)
 let level = 1
+// Debug
+controller.B.onEvent(ControllerButtonEvent.Released, function() {
+    let option = game.askForNumber("Debug Menu. Choose a level (0 is debug): ")
+    if (option == 1) {
+        scene.setTileMapLevel(assets.tilemap`level1`)
+    } else if (option == 2) {
+        scene.setTileMapLevel(assets.tilemap`level2`)
+    } else if (option == 3) {
+        scene.setTileMapLevel(assets.tilemap`level3`)
+    } else if (option == 4) {
+        scene.setTileMapLevel(assets.tilemap`level4`)
+    } else if (option == 5) {
+        scene.setTileMapLevel(assets.tilemap`level5`)
+    } else if (option == 0) {
+        scene.setTileMapLevel(assets.tilemap`debugMap`)
+    } else {
+        console.log("Number too high;")
+        game.ask("Error. Check console")
+    }
+})
 
 // Background Loop
 forever(function() {
@@ -196,7 +216,7 @@ sprites.onOverlap(SpriteKind.Player, emeraldKind, function(sprite: Sprite, other
         level++
     } else {
         console.log("Win;")
-        game.over(true);
+        scene.setTileMapLevel(assets.tilemap`end`)
         console.log("End;")
     }
 })

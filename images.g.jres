@@ -4,11 +4,6 @@
         "mimeType": "image/x-mkcd-f4",
         "displayName": "apple"
     },
-    "image1": {
-        "data": "hwQQABAAAAAAAAAAAAAAAAAAAAD/AAAAAPAA8N0PAAAA8AAA/w8AAPD/AAAvDwAA7/7/Dy///wDv8t39LiKPDy/y//0iIm8PL/Ld/SIi/wAv8v/9IiL/AC/y3f0iIo8PL/L/Dy//bw/w/wAALw8AAAAAAAAv/w8AAAAAAC/y/QAAAAAA8P8PAA==",
-        "mimeType": "image/x-mkcd-f4",
-        "displayName": "playerMain"
-    },
     "image2": {
         "data": "hwQQABAAAAAA8A8AAP8AAABP/gDw3Q8AAE/+AAD/DwDw//7/D08PAE/u/t39L/8P7+7+//0k8vjv7v7d/yTy9u/u/v39IvIP7+7+3f8i8g/v7v7d/SLy+O/u/v/9IvL27+7+3f0i8g/w//7/Dy//AADv/gAAL98PAO/+AADw3w8A8A8AAADwAA==",
         "mimeType": "image/x-mkcd-f4",
@@ -48,6 +43,11 @@
         "data": "hwQQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/////AAAA8JmZmZkPAACfiZmZmfkAAJ+YmZmZ+QAAn5mZmZn5AACfmZmZmfkAAP//mZmZ+QAAf/eZmZn5AP9/9/+ZmfkAf3d395mZ+QB/d3f3mZkPAP9/9////wAAAH/3AAAAAAAA//8AAAAAAA==",
         "mimeType": "image/x-mkcd-f4",
         "displayName": "projectileAdd0"
+    },
+    "image1": {
+        "data": "hwQQABAAAAAAAAAAAAAAAAAAAAD/AAAAAPAA8N0PAAAA8AAA/w8AAPD/AAAvDwAA7/7/Dy///wDv8t39LiKPDy/y//0iIm8PL/Ld/SIi/wAv8v/9IiL/AC/y3f0iIo8PL/L/Dy//bw/w/wAALw8AAAAAAAAv/w8AAAAAAC/y/QAAAAAA8P8PAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "playerMain"
     },
     "anim1": {
         "namespace": "myAnimations",

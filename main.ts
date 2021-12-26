@@ -1,5 +1,5 @@
 // Some Strange Game
-game.splash("Some Strange Game", "very strange")
+game.splash("Some Strange Game")
 console.log("Begin;")
 
 // Setup

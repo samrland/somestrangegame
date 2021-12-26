@@ -49,7 +49,7 @@ emerald.setPosition(randomLocationX, randomLocationY)
 let level = 1
 // Debug
 controller.B.onEvent(ControllerButtonEvent.Released, function() {
-    let option = game.askForNumber("Debug Menu. Choose a level (0 is debug): ")
+    let option = game.askForNumber("Debug Menu. Choose a level: ", 1)
     if (option == 1) {
         scene.setTileMapLevel(assets.tilemap`level1`)
     } else if (option == 2) {
@@ -57,14 +57,12 @@ controller.B.onEvent(ControllerButtonEvent.Released, function() {
     } else if (option == 3) {
         scene.setTileMapLevel(assets.tilemap`level3`)
     } else if (option == 4) {
-        scene.setTileMapLevel(assets.tilemap`level4`)
+        scene.setTileMapLevel(assets.tilemap`level04`)
     } else if (option == 5) {
         scene.setTileMapLevel(assets.tilemap`level5`)
-    } else if (option == 0) {
-        scene.setTileMapLevel(assets.tilemap`debugMap`)
     } else {
-        console.log("Number too high;")
-        game.ask("Error. Check console")
+        console.log("Error: Number too high;")
+        game.ask("Error; Number too high")
     }
 })
 
@@ -96,7 +94,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function(sprite: Sprite, o
     playerMain.sayText("Tasty!", 500, true)
     music.playSound("C:1 G:1")
     animation.runImageAnimation(playerMain, assets.animation`eating`, 200, false) // eating animation
-    info.player1.changeLifeBy(+1) // add 1 life
+    info.changeLifeBy(+1) // add 1 life
     otherSprite.destroy() // destroy apple
 })
 // Enemy Overlap
@@ -104,7 +102,7 @@ sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Player, function(sprite: Sprite, 
     console.log("playerMain hurt by enemy;")
     playerMain.sayText("Ouch!", 500, true)
     music.playSound("C:1 C:1")
-    info.player1.changeLifeBy(-1) // remove 1 life
+    info.changeLifeBy(-1) // remove 1 life
     randomLocationX = Math.floor(Math.randomRange(0, 64) * 4)
     randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
     enemy.setPosition(randomLocationX, randomLocationY)
@@ -132,91 +130,98 @@ sprites.onOverlap(SpriteKind.Player, projectileAddKind, function(sprite: Sprite,
 })
 // Emerald Overlap
 sprites.onOverlap(SpriteKind.Player, emeraldKind, function(sprite: Sprite, otherSprite: Sprite) {
-    if (level < 2) {
-        console.log("Next Level;")
-        if (level == 1) {
-            // Apple
-            let randomLocationX = Math.floor(Math.randomRange(0, 64) * 4)
-            let randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
-            apple.setPosition(randomLocationX, randomLocationY)
-            // Enemy
-            randomLocationX = Math.floor(Math.randomRange(0, 64) * 4)
-            randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
-            enemy.setPosition(randomLocationX, randomLocationY)
-            // +1 Projectile
-            randomLocationX = Math.floor(Math.randomRange(0, 64) * 4)
-            randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
-            projectileAdd.setPosition(randomLocationX, randomLocationY)
-            // Emerald
-            randomLocationX = Math.floor(Math.randomRange(0, 64) * 4)
-            randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
-            emerald.setPosition(randomLocationX, randomLocationY)
-            // Next Level
-            scene.setTileMapLevel(assets.tilemap`level2`)
-        } // else if (level == 2) {
-            // // Apple
-            // let randomLocationX = Math.floor(Math.randomRange(0, 64) * 4)
-            // let randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
-            // apple.setPosition(randomLocationX, randomLocationY)
-            // // Enemy
-            // randomLocationX = Math.floor(Math.randomRange(0, 64) * 4)
-            // randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
-            // enemy.setPosition(randomLocationX, randomLocationY)
-            // // +1 Projectile
-            // randomLocationX = Math.floor(Math.randomRange(0, 64) * 4)
-            // randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
-            // projectileAdd.setPosition(randomLocationX, randomLocationY)
-            // // Emerald
-            // randomLocationX = Math.floor(Math.randomRange(0, 64) * 4)
-            // randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
-            // emerald.setPosition(randomLocationX, randomLocationY)
-            // // Next Level
-        //     scene.setTileMapLevel(assets.tilemap`level3`)
-        // } else if (level == 3) {
-            // // Apple
-            // let randomLocationX = Math.floor(Math.randomRange(0, 64) * 4)
-            // let randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
-            // apple.setPosition(randomLocationX, randomLocationY)
-            // // Enemy
-            // randomLocationX = Math.floor(Math.randomRange(0, 64) * 4)
-            // randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
-            // enemy.setPosition(randomLocationX, randomLocationY)
-            // // +1 Projectile
-            // randomLocationX = Math.floor(Math.randomRange(0, 64) * 4)
-            // randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
-            // projectileAdd.setPosition(randomLocationX, randomLocationY)
-            // // Emerald
-            // randomLocationX = Math.floor(Math.randomRange(0, 64) * 4)
-            // randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
-            // emerald.setPosition(randomLocationX, randomLocationY)
-            // // Next Level
-        //     scene.setTileMapLevel(assets.tilemap`level4`)
-        // } else if (level == 4) {
-            // // Apple
-            // let randomLocationX = Math.floor(Math.randomRange(0, 64) * 4)
-            // let randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
-            // apple.setPosition(randomLocationX, randomLocationY)
-            // // Enemy
-            // randomLocationX = Math.floor(Math.randomRange(0, 64) * 4)
-            // randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
-            // enemy.setPosition(randomLocationX, randomLocationY)
-            // // +1 Projectile
-            // randomLocationX = Math.floor(Math.randomRange(0, 64) * 4)
-            // randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
-            // projectileAdd.setPosition(randomLocationX, randomLocationY)
-            // // Emerald
-            // randomLocationX = Math.floor(Math.randomRange(0, 64) * 4)
-            // randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
-            // emerald.setPosition(randomLocationX, randomLocationY)
-            // // Next Level
-        //     scene.setTileMapLevel(assets.tilemap`level5`)
-        // } else {
-        //     console.log("Error;")
-        // }
-        level++
+    console.log("Next Level;")
+    if (level == 1) {
+        // +1 Life
+        info.changeLifeBy(1) // add 1 life
+        // Apple
+        let randomLocationX = Math.floor(Math.randomRange(0, 64) * 4)
+        let randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
+        apple.setPosition(randomLocationX, randomLocationY)
+        // Enemy
+        randomLocationX = Math.floor(Math.randomRange(0, 64) * 4)
+        randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
+        enemy.setPosition(randomLocationX, randomLocationY)
+        // +1 Projectile
+        randomLocationX = Math.floor(Math.randomRange(0, 64) * 4)
+        randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
+        projectileAdd.setPosition(randomLocationX, randomLocationY)
+        // Emerald
+        randomLocationX = Math.floor(Math.randomRange(0, 64) * 4)
+        randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
+        emerald.setPosition(randomLocationX, randomLocationY)
+        // Next Level
+        scene.setTileMapLevel(assets.tilemap`level2`)
+    } else if (level == 2) {
+        // +1 Life
+        info.changeLifeBy(1) // add 1 life
+        // Apple
+        let randomLocationX = Math.floor(Math.randomRange(0, 64) * 4)
+        let randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
+        apple.setPosition(randomLocationX, randomLocationY)
+        // Enemy
+        randomLocationX = Math.floor(Math.randomRange(0, 64) * 4)
+        randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
+        enemy.setPosition(randomLocationX, randomLocationY)
+        // +1 Projectile
+        randomLocationX = Math.floor(Math.randomRange(0, 64) * 4)
+        randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
+        projectileAdd.setPosition(randomLocationX, randomLocationY)
+        // Emerald
+        randomLocationX = Math.floor(Math.randomRange(0, 64) * 4)
+        randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
+        emerald.setPosition(randomLocationX, randomLocationY)
+        // Next Level
+        scene.setTileMapLevel(assets.tilemap`level3`)
+    } else if (level == 3) {
+        // +1 Life
+        info.changeLifeBy(1) // add 1 life
+        // Apple
+        let randomLocationX = Math.floor(Math.randomRange(0, 64) * 4)
+        let randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
+        apple.setPosition(randomLocationX, randomLocationY)
+        // Enemy
+        randomLocationX = Math.floor(Math.randomRange(0, 64) * 4)
+        randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
+        enemy.setPosition(randomLocationX, randomLocationY)
+        // +1 Projectile
+        randomLocationX = Math.floor(Math.randomRange(0, 64) * 4)
+        randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
+        projectileAdd.setPosition(randomLocationX, randomLocationY)
+        // Emerald
+        randomLocationX = Math.floor(Math.randomRange(0, 64) * 4)
+        randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
+        emerald.setPosition(randomLocationX, randomLocationY)
+        // Next Level
+        scene.setTileMapLevel(assets.tilemap`level04`)
+    } else if (level == 4) {
+        // +1 Life
+        info.changeLifeBy(1) // add 1 life
+        // Apple
+        let randomLocationX = Math.floor(Math.randomRange(0, 64) * 4)
+        let randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
+        apple.setPosition(randomLocationX, randomLocationY)
+        // Enemy
+        randomLocationX = Math.floor(Math.randomRange(0, 64) * 4)
+        randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
+        enemy.setPosition(randomLocationX, randomLocationY)
+        // +1 Projectile
+        randomLocationX = Math.floor(Math.randomRange(0, 64) * 4)
+        randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
+        projectileAdd.setPosition(randomLocationX, randomLocationY)
+        // Emerald
+        randomLocationX = Math.floor(Math.randomRange(0, 64) * 4)
+        randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
+        emerald.setPosition(randomLocationX, randomLocationY)
+        // Next Level
+        scene.setTileMapLevel(assets.tilemap`level5`)
     } else {
         console.log("Win;")
+        apple.destroy()
+        enemy.destroy()
+        projectileAdd.destroy()
+        emerald.destroy()
         scene.setTileMapLevel(assets.tilemap`end`)
-        console.log("End;")
     }
+    level++
 })

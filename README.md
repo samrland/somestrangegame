@@ -2,6 +2,7 @@
 Pretty strange.
 
 ![Version](https://shields.io/github/v/release/samrcode/somestrangegame?display_name=tag&sort=semver)
+![Build status badge](https://github.com/samrcode/somestrangegame/workflows/MakeCode/badge.svg)
 
 Open this page at [https://samrcode.github.io/somestrangegame/](https://samrcode.github.io/somestrangegame/)
 
@@ -14,8 +15,7 @@ This repository can be added as an **extension** in MakeCode.
 * click on **Extensions** under the gearwheel menu
 * search for **https://github.com/samrcode/somestrangegame** and import
 
-## Edit this project 
-![Build status badge](https://github.com/samrcode/somestrangegame/workflows/MakeCode/badge.svg)
+## Edit this project
 
 To edit this repository in MakeCode.
 

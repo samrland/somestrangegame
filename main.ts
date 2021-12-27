@@ -16,7 +16,7 @@ let emeraldKind = SpriteKind.create()
 let playerMain = sprites.create(assets.image`playerMain`, SpriteKind.Player)
 let enemy = sprites.create(assets.image`enemy`, SpriteKind.Enemy)
 let apple = sprites.create(assets.image`apple`, SpriteKind.Food)
-let projectileAdd = sprites.create(assets.image`projectileAdd`, projectileAddKind)
+let projectileAdd = sprites.create(assets.image`projectileAdd0`, projectileAddKind)
 let emerald = sprites.create(assets.image`emerald`, emeraldKind)
 console.log("Sprites created (playerMain, enemy, apple);")
 // Player Setup
@@ -79,8 +79,14 @@ forever(function() {
 controller.A.onEvent(ControllerButtonEvent.Pressed, function() {
     // Shoot Projectile towards in direction facing
     if (projectilesLeft > 0) {
-        animation.runImageAnimation(playerMain, assets.animation`projectileThrow`, 200, false)
-        let projectile = sprites.createProjectileFromSprite(assets.image`projectile`, playerMain, 50, 50)
+        // animation.runImageAnimation(playerMain, assets.animation`projectileThrow`, 200, false)
+        let directionX = controller.dx() * 100
+        let directionY = controller.dy() * 100
+        if (directionX == 0 && directionY == 0) {
+            let projectile = sprites.createProjectileFromSprite(assets.image`projectile0`, playerMain, 100, 0)
+        } else {
+            let projectile = sprites.createProjectileFromSprite(assets.image`projectile0`, playerMain, directionX, directionY)
+        }
         projectilesLeft--
         console.log("Projectile shot;")
     } else {
@@ -122,7 +128,7 @@ sprites.onOverlap(SpriteKind.Player, projectileAddKind, function(sprite: Sprite,
     console.log("projectileAdd picked up by playerMain;")
     playerMain.sayText("Yeah!", 500, true)
     music.playSound("C:1 G:1")
-    animation.runImageAnimation(playerMain, assets.animation`projectileAddAnim`, 200, false)
+    animation.runImageAnimation(playerMain, assets.animation`projectileAddAnim0`, 200, false)
     randomLocationX = Math.floor(Math.randomRange(0, 64) * 4)
     randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
     projectileAdd.setPosition(randomLocationX, randomLocationY)

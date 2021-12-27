@@ -1,6 +1,8 @@
 # Some Strange Game
 Pretty strange.
 
+![Version](https://shields.io/github/v/release/samrcode/somestrangegame?display_name=tag&sort=semver)
+
 > Open this page at [https://samrcode.github.io/somestrangegame/](https://samrcode.github.io/somestrangegame/)
 
 ## Use as Extension

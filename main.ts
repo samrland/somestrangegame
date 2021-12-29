@@ -18,11 +18,11 @@ let enemy = sprites.create(assets.image`enemy`, SpriteKind.Enemy)
 let apple = sprites.create(assets.image`apple`, SpriteKind.Food)
 let projectileAdd = sprites.create(assets.image`projectileAdd0`, projectileAddKind)
 let emerald = sprites.create(assets.image`emerald`, emeraldKind)
-console.log("Sprites created (playerMain, enemy, apple);")
+console.log("Sprites created (playerMain, enemy, apple, projectileAdd, emerald);")
 // Player Setup
 controller.moveSprite(playerMain) // setup controller
 enemy.follow(playerMain, 50, 50) // make enemy follow player
-info.player1.setLife(3) // set lives
+info.setLife(3) // set lives
 scene.cameraFollowSprite(playerMain) // camera follow player
 scene.setTileMapLevel(assets.tilemap`level1`)
 let projectilesLeft = 10
@@ -52,17 +52,22 @@ controller.B.onEvent(ControllerButtonEvent.Released, function() {
     let option = game.askForNumber("Debug Menu. Choose a level: ", 1)
     if (option == 1) {
         scene.setTileMapLevel(assets.tilemap`level1`)
+        let level = 1
     } else if (option == 2) {
         scene.setTileMapLevel(assets.tilemap`level2`)
+        let level = 2
     } else if (option == 3) {
         scene.setTileMapLevel(assets.tilemap`level3`)
+        let level = 3
     } else if (option == 4) {
         scene.setTileMapLevel(assets.tilemap`level04`)
+        let level = 4
     } else if (option == 5) {
         scene.setTileMapLevel(assets.tilemap`level5`)
+        let level = 5
     } else {
         console.log("Error: Number too high;")
-        game.ask("Error; Number too high")
+        game.ask("Error: Number too high")
     }
 })
 

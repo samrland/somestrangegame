@@ -1,13 +1,12 @@
 // Some Strange Game
+scene.setTileMapLevel(assets.tilemap`title`)
 game.splash("Some Strange Game")
 console.log("Begin;")
 
 // Setup
 // Music Setup
-// Music Setup
-let gameMusic = "C:2 D:2 E:2 F:2 G:8 G:2 F:2 E:2 D:2 E:4 D:4 C:4 C:2 D:2 E:2 F:2 G:2 G:2 F:2 E:2 D:2 E:4 D:4 C:4"
-game.onUpdateInterval(8500, function () {
-    music.playSound(gameMusic)
+forever(function () {
+    music.playMelody("C5 B A G E G E G ", 120)
 })
 console.log("Music started;")
 // Sprite Creation
@@ -48,7 +47,7 @@ randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
 emerald.setPosition(randomLocationX, randomLocationY)
 let level = 1
 // Debug
-controller.B.onEvent(ControllerButtonEvent.Released, function() {
+controller.combos.attachCombo("ududaba+b", function() {
     let option = game.askForNumber("Debug Menu. Choose a level: ", 1)
     if (option == 1) {
         scene.setTileMapLevel(assets.tilemap`level1`)

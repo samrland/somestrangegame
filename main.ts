@@ -170,8 +170,8 @@ sprites.onOverlap(SpriteKind.Player, projectileAddKind, function(sprite: Sprite,
 })
 // Emerald Overlap
 sprites.onOverlap(SpriteKind.Player, emeraldKind, function(sprite: Sprite, otherSprite: Sprite) {
-    console.log("Next Level;")
-    if (level == 1) {
+    console.log("Next level;")
+    if (level < 5) {
         // +1 Life
         info.changeLifeBy(1) // add 1 life
         // Apple
@@ -191,70 +191,30 @@ sprites.onOverlap(SpriteKind.Player, emeraldKind, function(sprite: Sprite, other
         randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
         emerald.setPosition(randomLocationX, randomLocationY)
         // Next Level
-        scene.setTileMapLevel(assets.tilemap`level2`)
-    } else if (level == 2) {
-        // +1 Life
-        info.changeLifeBy(1) // add 1 life
-        // Apple
-        let randomLocationX = Math.floor(Math.randomRange(0, 64) * 4)
-        let randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
-        apple.setPosition(randomLocationX, randomLocationY)
-        // Enemy
-        randomLocationX = Math.floor(Math.randomRange(0, 64) * 4)
-        randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
-        enemy.setPosition(randomLocationX, randomLocationY)
-        // +1 Projectile
-        randomLocationX = Math.floor(Math.randomRange(0, 64) * 4)
-        randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
-        projectileAdd.setPosition(randomLocationX, randomLocationY)
-        // Emerald
-        randomLocationX = Math.floor(Math.randomRange(0, 64) * 4)
-        randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
-        emerald.setPosition(randomLocationX, randomLocationY)
-        // Next Level
-        scene.setTileMapLevel(assets.tilemap`level3`)
-    } else if (level == 3) {
-        // +1 Life
-        info.changeLifeBy(1) // add 1 life
-        // Apple
-        let randomLocationX = Math.floor(Math.randomRange(0, 64) * 4)
-        let randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
-        apple.setPosition(randomLocationX, randomLocationY)
-        // Enemy
-        randomLocationX = Math.floor(Math.randomRange(0, 64) * 4)
-        randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
-        enemy.setPosition(randomLocationX, randomLocationY)
-        // +1 Projectile
-        randomLocationX = Math.floor(Math.randomRange(0, 64) * 4)
-        randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
-        projectileAdd.setPosition(randomLocationX, randomLocationY)
-        // Emerald
-        randomLocationX = Math.floor(Math.randomRange(0, 64) * 4)
-        randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
-        emerald.setPosition(randomLocationX, randomLocationY)
-        // Next Level
-        scene.setTileMapLevel(assets.tilemap`level04`)
-    } else if (level == 4) {
-        // +1 Life
-        info.changeLifeBy(1) // add 1 life
-        // Apple
-        let randomLocationX = Math.floor(Math.randomRange(0, 64) * 4)
-        let randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
-        apple.setPosition(randomLocationX, randomLocationY)
-        // Enemy
-        randomLocationX = Math.floor(Math.randomRange(0, 64) * 4)
-        randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
-        enemy.setPosition(randomLocationX, randomLocationY)
-        // +1 Projectile
-        randomLocationX = Math.floor(Math.randomRange(0, 64) * 4)
-        randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
-        projectileAdd.setPosition(randomLocationX, randomLocationY)
-        // Emerald
-        randomLocationX = Math.floor(Math.randomRange(0, 64) * 4)
-        randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
-        emerald.setPosition(randomLocationX, randomLocationY)
-        // Next Level
-        scene.setTileMapLevel(assets.tilemap`level5`)
+        let nextLevel = "level" + (level + 1)
+        let upNext = level + 1
+        switch (upNext) {
+            case 1:
+                scene.setTileMapLevel(assets.tilemap`level1`)
+                level++
+                break
+            case 2:
+                scene.setTileMapLevel(assets.tilemap`level2`)
+                level++
+                break
+            case 3:
+                scene.setTileMapLevel(assets.tilemap`level3`)
+                level++
+                break
+            case 4:
+                scene.setTileMapLevel(assets.tilemap`level04`)
+                level++
+                break
+            case 5:
+                scene.setTileMapLevel(assets.tilemap`level5`)
+                level++
+                break
+        }
     } else {
         console.log("Win;")
         apple.destroy()
@@ -264,5 +224,4 @@ sprites.onOverlap(SpriteKind.Player, emeraldKind, function(sprite: Sprite, other
         scene.setTileMapLevel(assets.tilemap`end`)
         effects.confetti.startScreenEffect(10000)
     }
-    level++
 })

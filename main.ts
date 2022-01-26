@@ -15,9 +15,11 @@ let emeraldKind = SpriteKind.create()
 let playerMain = sprites.create(assets.image`playerMain`, SpriteKind.Player)
 let enemy = sprites.create(assets.image`enemy`, SpriteKind.Enemy)
 let apple = sprites.create(assets.image`apple`, SpriteKind.Food)
+let cherry = sprites.create(assets.image`cherry`, SpriteKind.Food)
+let strawberry = sprites.create(assets.image`strawberry`, SpriteKind.Food)
 let projectileAdd = sprites.create(assets.image`projectileAdd0`, projectileAddKind)
 let emerald = sprites.create(assets.image`emerald`, emeraldKind)
-console.log("Sprites created (playerMain, enemy, apple, projectileAdd, emerald);")
+console.log("Sprites created (playerMain, enemy, apple, cherry, strawberry projectileAdd, emerald);")
 // Player Setup
 controller.moveSprite(playerMain) // setup controller
 enemy.follow(playerMain, 50, 50) // make enemy follow player
@@ -32,6 +34,22 @@ if (tiles.tileIsWall(tiles.getTileLocation(randomLocationX, randomLocationY))) {
     apple.setPosition(randomLocationX - 1, randomLocationY)
 } else {
     apple.setPosition(randomLocationX, randomLocationY)
+}
+// Cherry Setup
+randomLocationX = Math.floor(Math.randomRange(0, 64) * 4)
+randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
+if (tiles.tileIsWall(tiles.getTileLocation(randomLocationX, randomLocationY))) {
+    cherry.setPosition(randomLocationX - 1, randomLocationY)
+} else {
+    cherry.setPosition(randomLocationX, randomLocationY)
+}
+// Strawberry Setup
+randomLocationX = Math.floor(Math.randomRange(0, 64) * 4)
+randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
+if (tiles.tileIsWall(tiles.getTileLocation(randomLocationX, randomLocationY))) {
+    strawberry.setPosition(randomLocationX - 1, randomLocationY)
+} else {
+    strawberry.setPosition(randomLocationX, randomLocationY)
 }
 // Enemy Setup
 randomLocationX = Math.floor(Math.randomRange(0, 64) * 4)
@@ -112,12 +130,12 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function() {
 })
 // Food Overlap
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function(sprite: Sprite, otherSprite: Sprite) {
-    console.log("apple eaten by playerMain;")
+    console.log("food eaten by playerMain;")
     playerMain.sayText("Tasty!", 500, true)
     music.playSound("C:1 G:1")
     animation.runImageAnimation(playerMain, assets.animation`eating`, 200, false) // eating animation
     info.changeLifeBy(+1) // add 1 life
-    otherSprite.destroy() // destroy apple
+    otherSprite.destroy() // destroy food
 })
 // Enemy Overlap
 sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Player, function(sprite: Sprite, otherSprite: Sprite) {
@@ -244,6 +262,7 @@ sprites.onOverlap(SpriteKind.Player, emeraldKind, function(sprite: Sprite, other
         projectileAdd.destroy()
         emerald.destroy()
         scene.setTileMapLevel(assets.tilemap`end`)
+        effects.confetti.startScreenEffect(10000)
     }
     level++
 })

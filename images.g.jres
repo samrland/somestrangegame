@@ -44,6 +44,16 @@
         "mimeType": "image/x-mkcd-f4",
         "displayName": "playerMain"
     },
+    "image8": {
+        "data": "hwQQABAAAAAAAODuDAAAAAAALiLCAAAAAOBC4i4MAAAA4CXi7uIAAADgJCLiwgAAAOAiIuLCAAAAyC4iIu4AAABoLCLizswAAGjI7C4i4gxghwDgQiLuzmCHAOAlIu7CdggA4CQi4sJ2iGbIIiLiwnZ2d2YsIu7CdoiIiMgiIgyGCAAAAO7MAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "cherry"
+    },
+    "image11": {
+        "data": "hwQQABAAAAAAAADu7u7uDgAA7iIiIu7OAOAiREQk4s4ALkJFIiLuwgAuRCIiIiLOAC4kIkIi4s6AKGJmJiIkzGbod3cmIiLOYIZ3ZyJC4gwAZncmQuLuDABgZyIiIu4MAHZ3Zy7izgBgZ2h35+4MAIAIhnZ3zAAAAACAYGYGAAAAAAAAAAAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "strawberry"
+    },
     "anim1": {
         "namespace": "myAnimations",
         "id": "anim1",

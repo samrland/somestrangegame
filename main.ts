@@ -94,6 +94,12 @@ controller.combos.attachCombo("ududaba+b", function() {
     } else if (option == 5) {
         scene.setTileMapLevel(assets.tilemap`level5`)
         let level = 5
+    } else if (option == 6) {
+        scene.setTileMapLevel(assets.tilemap`level06`)
+        let level = 6
+    } else if (option == 7) {
+        scene.setTileMapLevel(assets.tilemap`level07`)
+        let level = 7
     } else {
         console.log("Error: Number too high;")
         game.ask("Error: Number too high")
@@ -171,9 +177,7 @@ sprites.onOverlap(SpriteKind.Player, projectileAddKind, function(sprite: Sprite,
 // Emerald Overlap
 sprites.onOverlap(SpriteKind.Player, emeraldKind, function(sprite: Sprite, otherSprite: Sprite) {
     console.log("Next level;")
-    if (level < 5) {
-        // +1 Life
-        info.changeLifeBy(1) // add 1 life
+    if (level < 7) {
         // Apple
         let randomLocationX = Math.floor(Math.randomRange(0, 64) * 4)
         let randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
@@ -214,10 +218,20 @@ sprites.onOverlap(SpriteKind.Player, emeraldKind, function(sprite: Sprite, other
                 scene.setTileMapLevel(assets.tilemap`level5`)
                 level++
                 break
+            case 6:
+                scene.setTileMapLevel(assets.tilemap`level06`)
+                level++
+                break
+            case 7:
+                scene.setTileMapLevel(assets.tilemap`level07`)
+                level++
+                break
         }
     } else {
         console.log("Win;")
         apple.destroy()
+        cherry.destroy()
+        strawberry.destroy()
         enemy.destroy()
         projectileAdd.destroy()
         emerald.destroy()

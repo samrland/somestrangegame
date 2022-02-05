@@ -31,8 +31,6 @@ namespace myTiles {
     //% fixedInstance jres blockIdentity=images._tile
     export const tile14 = image.ofBuffer(hex``);
     //% fixedInstance jres blockIdentity=images._tile
-    export const tile16 = image.ofBuffer(hex``);
-    //% fixedInstance jres blockIdentity=images._tile
     export const tile17 = image.ofBuffer(hex``);
     //% fixedInstance jres blockIdentity=images._tile
     export const tile15 = image.ofBuffer(hex``);
@@ -78,10 +76,6 @@ namespace myTiles {
     export const tile54 = image.ofBuffer(hex``);
     //% fixedInstance jres blockIdentity=images._tile
     export const tile55 = image.ofBuffer(hex``);
-    //% fixedInstance jres blockIdentity=images._tile
-    export const tile56 = image.ofBuffer(hex``);
-    //% fixedInstance jres blockIdentity=images._tile
-    export const tile58 = image.ofBuffer(hex``);
     //% fixedInstance jres blockIdentity=images._tile
     export const tile57 = image.ofBuffer(hex``);
     //% fixedInstance jres blockIdentity=images._tile
@@ -337,8 +331,6 @@ namespace myTiles {
             case "tile13":return tile13;
             case "corner3":
             case "tile14":return tile14;
-            case "stair":
-            case "tile16":return tile16;
             case "stone":
             case "tile17":return tile17;
             case "floor":
@@ -385,10 +377,6 @@ namespace myTiles {
             case "tile54":return tile54;
             case "tree":
             case "tile55":return tile55;
-            case "chair":
-            case "tile56":return tile56;
-            case "myTile1":
-            case "tile58":return tile58;
             case "chair0":
             case "tile57":return tile57;
             case "chair1":

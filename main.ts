@@ -119,7 +119,6 @@ forever(function() {
 controller.A.onEvent(ControllerButtonEvent.Pressed, function() {
     // Shoot Projectile towards in direction facing
     if (projectilesLeft > 0) {
-        // animation.runImageAnimation(playerMain, assets.animation`projectileThrow`, 200, false)
         let directionX = controller.dx() * 100
         let directionY = controller.dy() * 100
         if (directionX == 0 && directionY == 0) {

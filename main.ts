@@ -117,13 +117,15 @@ forever(function() {
 // Main Loop
 // Buttons
 controller.A.onEvent(ControllerButtonEvent.Pressed, function() {
-    // Shoot Projectile towards in direction facing
+    // Shoot projectile towards direction moving
     if (projectilesLeft > 0) {
         let directionX = controller.dx() * 100
         let directionY = controller.dy() * 100
         if (directionX == 0 && directionY == 0) {
+            // if not moving, shoot right
             let projectile = sprites.createProjectileFromSprite(assets.image`projectile0`, playerMain, 100, 0)
         } else {
+            // if moving, shoot in direction moving
             let projectile = sprites.createProjectileFromSprite(assets.image`projectile0`, playerMain, directionX, directionY)
         }
         projectilesLeft--
@@ -176,6 +178,7 @@ sprites.onOverlap(SpriteKind.Player, projectileAddKind, function(sprite: Sprite,
 // Emerald Overlap
 sprites.onOverlap(SpriteKind.Player, emeraldKind, function(sprite: Sprite, otherSprite: Sprite) {
     console.log("Next level;")
+    scene.cameraShake(4, 500)
     if (level < 7) {
         // Apple
         let randomLocationX = Math.floor(Math.randomRange(0, 64) * 4)
@@ -194,8 +197,8 @@ sprites.onOverlap(SpriteKind.Player, emeraldKind, function(sprite: Sprite, other
         randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
         emerald.setPosition(randomLocationX, randomLocationY)
         // Next Level
-        let nextLevel = "level" + (level + 1)
         let upNext = level + 1
+        let nextLevel = "level" + upNext
         switch (upNext) {
             case 1:
                 scene.setTileMapLevel(assets.tilemap`level1`)

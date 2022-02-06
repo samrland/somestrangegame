@@ -30,44 +30,24 @@ let projectilesLeft = 10
 // Apple Setup
 let randomLocationX = Math.floor(Math.randomRange(0, 64) * 4)
 let randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
-if (tiles.tileIsWall(tiles.getTileLocation(randomLocationX, randomLocationY))) {
-    apple.setPosition(randomLocationX - 1, randomLocationY)
-} else {
-    apple.setPosition(randomLocationX, randomLocationY)
-}
+apple.setPosition(randomLocationX, randomLocationY)
 // Cherry Setup
 randomLocationX = Math.floor(Math.randomRange(0, 64) * 4)
 randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
-if (tiles.tileIsWall(tiles.getTileLocation(randomLocationX, randomLocationY))) {
-    cherry.setPosition(randomLocationX - 1, randomLocationY)
-} else {
-    cherry.setPosition(randomLocationX, randomLocationY)
-}
+cherry.setPosition(randomLocationX, randomLocationY)
 // Strawberry Setup
 randomLocationX = Math.floor(Math.randomRange(0, 64) * 4)
 randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
-if (tiles.tileIsWall(tiles.getTileLocation(randomLocationX, randomLocationY))) {
-    strawberry.setPosition(randomLocationX - 1, randomLocationY)
-} else {
-    strawberry.setPosition(randomLocationX, randomLocationY)
-}
+strawberry.setPosition(randomLocationX, randomLocationY)
 // Enemy Setup
 randomLocationX = Math.floor(Math.randomRange(0, 64) * 4)
 randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
-if (tiles.tileIsWall(tiles.getTileLocation(randomLocationX, randomLocationY))) {
-    enemy.setPosition(randomLocationX - 1, randomLocationY)
-} else {
-    enemy.setPosition(randomLocationX, randomLocationY)
-}
+enemy.setPosition(randomLocationX, randomLocationY)
 let enemyLives = 5
 // +1 Projectile Setup
 randomLocationX = Math.floor(Math.randomRange(0, 64) * 4)
 randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
-if (tiles.tileIsWall(tiles.getTileLocation(randomLocationX, randomLocationY))) {
-    projectileAdd.setPosition(randomLocationX - 1, randomLocationY)
-} else {
-    projectileAdd.setPosition(randomLocationX, randomLocationY)
-}
+projectileAdd.setPosition(randomLocationX, randomLocationY)
 // Emerald Setup
 game.onUpdateInterval(1000, function () {
     animation.runImageAnimation(emerald, assets.animation`shine`, 200, false)

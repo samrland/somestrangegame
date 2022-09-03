@@ -3,10 +3,18 @@ scene.setTileMapLevel(assets.tilemap`title`)
 game.splash("Some Strange Game")
 console.log("Begin;")
 
+let gameMusic = "C:2 D:2 E:2 F:2 G:8 G:2 F:2 E:2 D:2 E:4 D:4 C:4 C:2 D:2 E:2 F:2 G:2 G:2 F:2 E:2 D:2 E:4 D:4 C:4"
+let gameMelody = "C5 B A G E G E G "
+let musicOption = 1
+
 // Setup
 // Music Setup
 forever(function () {
-    music.playMelody("C5 B A G E G E G ", 120)
+    if (musicOption == 1) {
+        music.playSoundUntilDone(gameMusic)
+    } else if (musicOption == 2) {
+        music.playMelody(gameMelody, 120)
+    }
 })
 console.log("Music started;")
 // Sprite Creation
@@ -56,7 +64,30 @@ randomLocationX = Math.floor(Math.randomRange(0, 64) * 4)
 randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
 emerald.setPosition(randomLocationX, randomLocationY)
 let level = 1
-// "Secret" Level Selector
+// Menu
+// controller.B.onEvent(ControllerButtonEvent.Pressed, function() {
+//     let option = game.askForNumber("Menu. [1] Music [2] Test [0] Close", 1)
+//     if (option == 1) {
+//         let musicOptionT = game.askForNumber("Choose 1 or 2", 1)
+//         if (musicOptionT == 1) {
+//             music.stopAllSounds()
+//             musicOption = 1
+//         } else if (musicOptionT == 2) {
+//             music.stopAllSounds()
+//             musicOption = 2
+//         } else {
+//             console.log("Error: Number wrong;")
+//             game.ask("Error: Number wrong")
+//         }
+//     } else if (option == 2) {
+//         game.ask("This is a test.")
+//     } else if (option == 0) {
+//         console.log("Menu closed;")
+//     } else {
+//         console.log("Error: Number wrong;")
+//         game.ask("Error: Number wrong")
+//     }
+// }) 
 controller.combos.attachCombo("ududaba+b", function() {
     let option = game.askForNumber("\"Secret\" Level Selector. Choose a level: ", 1)
     if (option == 1) {
@@ -81,8 +112,8 @@ controller.combos.attachCombo("ududaba+b", function() {
         scene.setTileMapLevel(assets.tilemap`level07`)
         let level = 7
     } else {
-        console.log("Error: Number too high;")
-        game.ask("Error: Number too high")
+        console.log("Error: Number wrong;")
+        game.ask("Error: Number wrong")
     }
 })
 

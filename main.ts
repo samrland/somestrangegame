@@ -56,9 +56,9 @@ randomLocationX = Math.floor(Math.randomRange(0, 64) * 4)
 randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
 emerald.setPosition(randomLocationX, randomLocationY)
 let level = 1
-// Debug
+// "Secret" Level Selector
 controller.combos.attachCombo("ududaba+b", function() {
-    let option = game.askForNumber("Debug Menu. Choose a level: ", 1)
+    let option = game.askForNumber("\"Secret\" Level Selector. Choose a level: ", 1)
     if (option == 1) {
         scene.setTileMapLevel(assets.tilemap`level1`)
         let level = 1

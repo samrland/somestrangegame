@@ -4,7 +4,7 @@ Pretty strange.
 ![Version](https://shields.io/github/v/release/samrcode/somestrangegame?display_name=tag&sort=semver)
 ![Build status badge](https://github.com/samrcode/somestrangegame/workflows/MakeCode/badge.svg)
 
-Play is at [samrcode.github.io/somestrangegame](https://samrcode.github.io/somestrangegame/)
+Play it at [samrcode.github.io/somestrangegame](https://samrcode.github.io/somestrangegame/)
 
 ## Use as Extension
 

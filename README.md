@@ -1,10 +1,11 @@
 # Some Strange Game
+
 Pretty strange.
 
-![Version](https://shields.io/github/v/release/samrcode/somestrangegame?display_name=tag&sort=semver)
-![Build status badge](https://github.com/samrcode/somestrangegame/workflows/MakeCode/badge.svg)
+![Version](https://shields.io/github/v/release/samrpf/somestrangegame?display_name=tag&sort=semver)
+![Build status badge](https://github.com/samrpf/somestrangegame/workflows/MakeCode/badge.svg)
 
-Play it at [samrcode.github.io/somestrangegame](https://samrcode.github.io/somestrangegame/)
+Play it at [samrpf.github.io/somestrangegame](https://samrpf.github.io/somestrangegame/)
 
 ## Use as Extension
 
@@ -13,7 +14,7 @@ This repository can be added as an **extension** in MakeCode.
 * open [https://arcade.makecode.com/](https://arcade.makecode.com/)
 * click on **New Project**
 * click on **Extensions** under the gearwheel menu
-* search for **https://github.com/samrcode/somestrangegame** and import
+* search for **https://github.com/samrpf/somestrangegame** and import
 
 ## Edit this project
 
@@ -21,7 +22,7 @@ To edit this repository in MakeCode.
 
 * open [https://arcade.makecode.com/](https://arcade.makecode.com/)
 * click on **Import** then click on **Import URL**
-* paste **https://github.com/samrcode/somestrangegame** and click import
+* paste **https://github.com/samrpf/somestrangegame** and click import
 
 <!--
 ## Blocks preview
@@ -29,7 +30,7 @@ To edit this repository in MakeCode.
 This image shows the blocks code from the last commit in master.
 This image may take a few minutes to refresh.
 
-![A rendered view of the blocks](https://github.com/samrcode/somestrangegame/raw/master/.github/makecode/blocks.png)
+![A rendered view of the blocks](https://github.com/samrpf/somestrangegame/raw/master/.github/makecode/blocks.png)
 
 #### Metadata (used for search, rendering)
 

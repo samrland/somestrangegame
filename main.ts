@@ -1,15 +1,17 @@
 // Some Strange Game
-scene.setTileMapLevel(assets.tilemap`title`)
-game.splash("Some Strange Game")
+scene.setTileMapLevel(assets.tilemap`title-map`)
+game.splash("Some Strange Game", "the strangest of games")
 console.log("Begin;")
 
 let gameMusic = "C:2 D:2 E:2 F:2 G:8 G:2 F:2 E:2 D:2 E:4 D:4 C:4 C:2 D:2 E:2 F:2 G:2 G:2 F:2 E:2 D:2 E:4 D:4 C:4"
 let gameMelody = "C5 B A G E G E G "
 let musicOption = 1
+let level = 1
+let levelShake = true
 
 // Setup
 // Music Setup
-forever(function () {
+forever(() => {
     if (musicOption == 1) {
         music.playSoundUntilDone(gameMusic)
     } else if (musicOption == 2) {
@@ -17,100 +19,93 @@ forever(function () {
     }
 })
 console.log("Music started;")
+
 // Sprite Creation
-let projectileAddKind = SpriteKind.create()
-let emeraldKind = SpriteKind.create()
-let playerMain = sprites.create(assets.image`playerMain`, SpriteKind.Player)
-let enemy = sprites.create(assets.image`enemy`, SpriteKind.Enemy)
-let apple = sprites.create(assets.image`apple`, SpriteKind.Food)
-let cherry = sprites.create(assets.image`cherry`, SpriteKind.Food)
-let strawberry = sprites.create(assets.image`strawberry`, SpriteKind.Food)
-let projectileAdd = sprites.create(assets.image`projectileAdd0`, projectileAddKind)
-let emerald = sprites.create(assets.image`emerald`, emeraldKind)
-console.log("Sprites created (playerMain, enemy, apple, cherry, strawberry projectileAdd, emerald);")
+/* used to set a random position for sprites */
+const spriteSetRandPos = (sprite: Sprite) => {
+    let randomLocationX = Math.floor(Math.randomRange(0, 64) * 4)
+    let randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
+    sprite.setPosition(randomLocationX, randomLocationY)
+}
 // Player Setup
-controller.moveSprite(playerMain) // setup controller
-enemy.follow(playerMain, 50, 50) // make enemy follow player
+let player = sprites.create(assets.image`player`, SpriteKind.Player)
+controller.moveSprite(player) // setup controller
 info.setLife(3) // set lives
-scene.cameraFollowSprite(playerMain) // camera follow player
+scene.cameraFollowSprite(player) // camera follow player
 scene.setTileMapLevel(assets.tilemap`level1`)
 let projectilesLeft = 10
-// Apple Setup
-let randomLocationX = Math.floor(Math.randomRange(0, 64) * 4)
-let randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
-apple.setPosition(randomLocationX, randomLocationY)
-// Cherry Setup
-randomLocationX = Math.floor(Math.randomRange(0, 64) * 4)
-randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
-cherry.setPosition(randomLocationX, randomLocationY)
-// Strawberry Setup
-randomLocationX = Math.floor(Math.randomRange(0, 64) * 4)
-randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
-strawberry.setPosition(randomLocationX, randomLocationY)
+console.log("Setup sprite (player);")
+
 // Enemy Setup
-randomLocationX = Math.floor(Math.randomRange(0, 64) * 4)
-randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
-enemy.setPosition(randomLocationX, randomLocationY)
+let enemy = sprites.create(assets.image`enemy`, SpriteKind.Enemy)
+enemy.follow(player, 50, 50) // make enemy follow player
+spriteSetRandPos(enemy)
 let enemyLives = 5
+
+// Apple Setup
+let apple = sprites.create(assets.image`apple`, SpriteKind.Food)
+spriteSetRandPos(apple)
+
 // +1 Projectile Setup
-randomLocationX = Math.floor(Math.randomRange(0, 64) * 4)
-randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
-projectileAdd.setPosition(randomLocationX, randomLocationY)
+let projectileAddKind = SpriteKind.create()
+let projectileAdd = sprites.create(assets.image`projectileAdd0`, projectileAddKind)
+spriteSetRandPos(projectileAdd)
+
 // Emerald Setup
-game.onUpdateInterval(1000, function () {
-    animation.runImageAnimation(emerald, assets.animation`shine`, 200, false)
+let emeraldKind = SpriteKind.create()
+let emerald = sprites.create(assets.image`emerald`, emeraldKind)
+game.onUpdateInterval(1000, () => {
+    animation.runImageAnimation(emerald, assets.animation`emeraldShine`, 200, false)
 })
-randomLocationX = Math.floor(Math.randomRange(0, 64) * 4)
-randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
-emerald.setPosition(randomLocationX, randomLocationY)
-let level = 1
+spriteSetRandPos(emerald)
+
 // Menu
-// controller.B.onEvent(ControllerButtonEvent.Pressed, function() {
-//     let option = game.askForNumber("Menu. [1] Music [2] Test [0] Close", 1)
-//     if (option == 1) {
-//         let musicOptionT = game.askForNumber("Choose 1 or 2", 1)
-//         if (musicOptionT == 1) {
-//             music.stopAllSounds()
-//             musicOption = 1
-//         } else if (musicOptionT == 2) {
-//             music.stopAllSounds()
-//             musicOption = 2
-//         } else {
-//             console.log("Error: Number wrong;")
-//             game.ask("Error: Number wrong")
-//         }
-//     } else if (option == 2) {
-//         game.ask("This is a test.")
-//     } else if (option == 0) {
-//         console.log("Menu closed;")
-//     } else {
-//         console.log("Error: Number wrong;")
-//         game.ask("Error: Number wrong")
-//     }
-// }) 
-controller.combos.attachCombo("ududaba+b", function() {
-    let option = game.askForNumber("\"Secret\" Level Selector. Choose a level: ", 1)
+controller.B.onEvent(ControllerButtonEvent.Pressed, () => {
+    let option = game.askForNumber("Menu. [1] Music [2] Level Shake [0] Close", 1)
     if (option == 1) {
-        scene.setTileMapLevel(assets.tilemap`level1`)
-        let level = 1
+        let musicOptionT = game.askForNumber("Choose 1 or 2", 1)
+        if (musicOptionT == 1) {
+            music.stopAllSounds()
+            musicOption = 1
+        } else if (musicOptionT == 2) {
+            music.stopAllSounds()
+            musicOption = 2
+        } else {
+            console.log("Error: Number wrong;")
+            game.ask("Error: Number wrong")
+        }
     } else if (option == 2) {
-        scene.setTileMapLevel(assets.tilemap`level2`)
-        let level = 2
-    } else if (option == 3) {
-        scene.setTileMapLevel(assets.tilemap`level3`)
-        let level = 3
-    } else if (option == 4) {
-        scene.setTileMapLevel(assets.tilemap`level04`)
-        let level = 4
-    } else if (option == 5) {
-        scene.setTileMapLevel(assets.tilemap`level5`)
-        let level = 5
-    } else if (option == 6) {
-        scene.setTileMapLevel(assets.tilemap`level06`)
-        let level = 6
-    } else if (option == 7) {
-        scene.setTileMapLevel(assets.tilemap`level07`)
-        let level = 7
+        levelShake = game.ask("Turn on shake on level switch?")
+    } else if (option == 0) {
+        console.log("Menu closed;")
+    } else {
+        console.log("Error: Number wrong;")
+        game.ask("Error: Number wrong")
+    }
+}) 
+
+// Secret Menu
+controller.combos.attachCombo("ududlrau+a", () => {
+    let option = game.askForNumber("Level Selector. Choose a level: ", 1)
+    if (option <= 7) {
+        if (option == 0) {
+            scene.setTileMapLevel(assets.tilemap`title-map`)
+        } else if (option == 1) {
+            scene.setTileMapLevel(assets.tilemap`level-1-map`)
+        } else if (option == 2) {
+            scene.setTileMapLevel(assets.tilemap`level-2-map`)
+        } else if (option == 3) {
+            scene.setTileMapLevel(assets.tilemap`level-3-map`)
+        } else if (option == 4) {
+            scene.setTileMapLevel(assets.tilemap`level-4-map`)
+        } else if (option == 5) {
+            scene.setTileMapLevel(assets.tilemap`level-5-map`)
+        } else if (option == 6) {
+            scene.setTileMapLevel(assets.tilemap`level-6-map`)
+        } else if (option == 7) {
+            scene.setTileMapLevel(assets.tilemap`level-7-map`)
+        }
+        level = option
     } else {
         console.log("Error: Number wrong;")
         game.ask("Error: Number wrong")
@@ -118,7 +113,7 @@ controller.combos.attachCombo("ududaba+b", function() {
 })
 
 // Background Loop
-forever(function() {
+forever(() => {
     if (enemyLives == 0) {
         enemy.destroy()
     }
@@ -126,18 +121,18 @@ forever(function() {
 })
 
 // Main Loop
-// Buttons
-controller.A.onEvent(ControllerButtonEvent.Pressed, function() {
+// Projectile Shooting
+controller.A.onEvent(ControllerButtonEvent.Pressed, () => {
     // Shoot projectile towards direction moving
     if (projectilesLeft > 0) {
         let directionX = controller.dx() * 100
         let directionY = controller.dy() * 100
         if (directionX == 0 && directionY == 0) {
             // if not moving, shoot right
-            let projectile = sprites.createProjectileFromSprite(assets.image`projectile0`, playerMain, 100, 0)
+            let projectile = sprites.createProjectileFromSprite(assets.image`projectile0`, player, 100, 0)
         } else {
             // if moving, shoot in direction moving
-            let projectile = sprites.createProjectileFromSprite(assets.image`projectile0`, playerMain, directionX, directionY)
+            let projectile = sprites.createProjectileFromSprite(assets.image`projectile0`, player, directionX, directionY)
         }
         projectilesLeft--
         console.log("Projectile shot;")
@@ -146,109 +141,105 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function() {
         console.log("No projectiles left;")
     }
 })
-// Food Overlap
-sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function(sprite: Sprite, otherSprite: Sprite) {
-    console.log("food eaten by playerMain;")
-    playerMain.sayText("Tasty!", 500, true)
+
+// Player Uses Food
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, (playerItem: Sprite, foodItem: Sprite) => {
+    console.log("food eaten by player;")
+    playerItem.sayText("Tasty!", 500, true)
     music.playSound("C:1 G:1")
-    animation.runImageAnimation(playerMain, assets.animation`eating`, 200, false) // eating animation
+    animation.runImageAnimation(playerItem, assets.animation`eating`, 200, false) // eating animation
     info.changeLifeBy(+1) // add 1 life
-    otherSprite.destroy() // destroy food
+    spriteSetRandPos(foodItem) // randpos food
 })
-// Enemy Overlap
-sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Player, function(sprite: Sprite, otherSprite: Sprite) {
-    console.log("playerMain hurt by enemy;")
-    playerMain.sayText("Ouch!", 500, true)
+
+// Enemy Hurts Player
+sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Player, (enemyItem: Sprite, playerItem: Sprite) => {
+    console.log("player hurt by enemy;")
+    playerItem.sayText("Ouch!", 500, true)
     music.playSound("C:1 C:1")
     info.changeLifeBy(-1) // remove 1 life
-    randomLocationX = Math.floor(Math.randomRange(0, 64) * 4)
-    randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
-    enemy.setPosition(randomLocationX, randomLocationY)
+    spriteSetRandPos(enemyItem) // randpos enemy
 })
-// Projectile Overlap
-sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function(sprite: Sprite, otherSprite) {
+
+// Player (projectile) Hurts Enemy
+sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, (projectileItem: Sprite, enemyItem: Sprite) => {
     console.log("enemy hurt by projectile;")
-    enemy.sayText("Ouch!", 500, true)
+    enemyItem.sayText("Ouch!", 500, true)
     music.playSound("C:1 G:1")
-    randomLocationX = Math.floor(Math.randomRange(0, 64) * 4)
-    randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
-    enemy.setPosition(randomLocationX, randomLocationY)
+    spriteSetRandPos(enemyItem)
     enemyLives--
 })
-// +1 Projectile Overlap
-sprites.onOverlap(SpriteKind.Player, projectileAddKind, function(sprite: Sprite, otherSprite: Sprite) {
-    console.log("projectileAdd picked up by playerMain;")
-    playerMain.sayText("Yeah!", 500, true)
+
+// Player Uses ProjectileAdd
+sprites.onOverlap(SpriteKind.Player, projectileAddKind, (playerItem: Sprite, projectileAddItem: Sprite) => {
+    console.log("projectileAdd picked up by player;")
+    playerItem.sayText("Yeah!", 500, true)
     music.playSound("C:1 G:1")
-    animation.runImageAnimation(playerMain, assets.animation`projectileAddAnim0`, 200, false)
-    randomLocationX = Math.floor(Math.randomRange(0, 64) * 4)
-    randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
-    projectileAdd.setPosition(randomLocationX, randomLocationY)
+    animation.runImageAnimation(playerItem, assets.animation`projectileAddAnim0`, 200, false)
+    spriteSetRandPos(projectileAddItem)
     projectilesLeft++
 })
+
 // Emerald Overlap
-sprites.onOverlap(SpriteKind.Player, emeraldKind, function(sprite: Sprite, otherSprite: Sprite) {
+sprites.onOverlap(SpriteKind.Player, emeraldKind, (playerItem: Sprite, emeraldItem: Sprite) => {
     console.log("Next level;")
-    scene.cameraShake(4, 500)
+
+    // a little camera shake (if turned on)
+    if (levelShake) {
+        scene.cameraShake(4, 500)
+    }
+
+    // go to next level
     if (level < 7) {
-        // Apple
-        let randomLocationX = Math.floor(Math.randomRange(0, 64) * 4)
-        let randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
-        apple.setPosition(randomLocationX, randomLocationY)
-        // Enemy
-        randomLocationX = Math.floor(Math.randomRange(0, 64) * 4)
-        randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
-        enemy.setPosition(randomLocationX, randomLocationY)
-        // +1 Projectile
-        randomLocationX = Math.floor(Math.randomRange(0, 64) * 4)
-        randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
-        projectileAdd.setPosition(randomLocationX, randomLocationY)
-        // Emerald
-        randomLocationX = Math.floor(Math.randomRange(0, 64) * 4)
-        randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
-        emerald.setPosition(randomLocationX, randomLocationY)
+        // set random locations
+        spriteSetRandPos(apple)
+        spriteSetRandPos(enemy)
+        spriteSetRandPos(projectileAdd)
+        spriteSetRandPos(emerald)
+
         // Next Level
         let upNext = level + 1
-        let nextLevel = "level" + upNext
+        // let nextLevel = "level" + upNext
         switch (upNext) {
             case 1:
-                scene.setTileMapLevel(assets.tilemap`level1`)
-                level++
+                scene.setTileMapLevel(assets.tilemap`level-1-map`)
                 break
             case 2:
-                scene.setTileMapLevel(assets.tilemap`level2`)
-                level++
+                scene.setTileMapLevel(assets.tilemap`level-2-map`)
                 break
             case 3:
-                scene.setTileMapLevel(assets.tilemap`level3`)
-                level++
+                scene.setTileMapLevel(assets.tilemap`level-3-map`)
                 break
             case 4:
-                scene.setTileMapLevel(assets.tilemap`level04`)
-                level++
+                scene.setTileMapLevel(assets.tilemap`level-4-map`)
                 break
             case 5:
-                scene.setTileMapLevel(assets.tilemap`level5`)
-                level++
+                scene.setTileMapLevel(assets.tilemap`level-5-map`)
                 break
             case 6:
-                scene.setTileMapLevel(assets.tilemap`level06`)
-                level++
+                scene.setTileMapLevel(assets.tilemap`level-6-map`)
                 break
             case 7:
-                scene.setTileMapLevel(assets.tilemap`level07`)
-                level++
+                scene.setTileMapLevel(assets.tilemap`level-7-map`)
                 break
         }
+        level++
     } else {
         console.log("Win;")
+
+        // destroy all sprites
         apple.destroy()
-        cherry.destroy()
-        strawberry.destroy()
         enemy.destroy()
         projectileAdd.destroy()
         emerald.destroy()
-        scene.setTileMapLevel(assets.tilemap`end`)
-        effects.confetti.startScreenEffect(10000)
+
+        // set ending tilemap
+        scene.setTileMapLevel(assets.tilemap`title-map`)
+
+        // add confetti effect
+        effects.confetti.startScreenEffect(120000)
+
+        // credits
+        player.sayText("Thanks for playing! This game was created by @samrpf on GitHub. You can find more of their creations at samrpf.repl.co.", 30000, true)
     }
 })

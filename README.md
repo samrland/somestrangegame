@@ -2,7 +2,7 @@
 
 Pretty strange.
 
-![Version](https://shields.io/github/v/release/samrpf/somestrangegame?display_name=tag&sort=semver)
+![Version](https://img.shields.io/github/v/release/samrpf/somestrangegame?sort=semver)
 ![Build status badge](https://github.com/samrpf/somestrangegame/workflows/MakeCode/badge.svg)
 
 Play it at [samrpf.github.io/somestrangegame](https://samrpf.github.io/somestrangegame/)

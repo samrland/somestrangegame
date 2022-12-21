@@ -117,6 +117,44 @@ f d f 4 2 2 2 2 2 2 2 2 2 2 f .
 . 8 . . f f f f f f f f . . 8 . 
 8 . . . . . . . . . . . . . . 8 
 `;
+            case "image5":
+            case "projectile1":return img`
+. . . . . b b b b b b . . . . . 
+. . . b b 9 9 9 9 9 9 b b . . . 
+. . b b 9 9 9 9 9 9 9 9 b b . . 
+. b b 9 d 9 9 9 9 9 9 9 9 b b . 
+. b 9 d 9 9 9 9 9 1 1 1 9 9 b . 
+b 9 d d 9 9 9 9 9 1 1 1 9 9 9 b 
+b 9 d 9 9 9 9 9 9 1 1 1 9 9 9 b 
+b 9 3 9 9 9 9 9 9 9 9 9 1 9 9 b 
+b 5 3 d 9 9 9 9 9 9 9 9 9 9 9 b 
+b 5 3 3 9 9 9 9 9 9 9 9 9 d 9 b 
+b 5 d 3 3 9 9 9 9 9 9 9 d d 9 b 
+. b 5 3 3 3 d 9 9 9 9 d d 5 b . 
+. b d 5 3 3 3 3 3 3 3 d 5 b b . 
+. . b d 5 d 3 3 3 3 5 5 b b . . 
+. . . b b 5 5 5 5 5 5 b b . . . 
+. . . . . b b b b b b . . . . . 
+`;
+            case "image6":
+            case "projectileAdd1":return img`
+. . . . . b b b b b f f f f . . 
+. . . b b 9 9 9 9 9 f 7 6 f . . 
+. . b b 9 9 9 9 f f f 7 6 f f f 
+. b b 9 d 9 9 9 f 7 7 7 7 7 6 f 
+. b 9 d 9 9 9 9 f 7 7 7 7 7 6 f 
+b 9 d d 9 9 9 9 f f f 7 6 f f f 
+b 9 d 9 9 9 9 9 9 1 f 7 6 f 9 b 
+b 9 3 9 9 9 9 9 9 9 f f f f 9 b 
+b 5 3 d 9 9 9 9 9 9 9 9 9 9 9 b 
+b 5 3 3 9 9 9 9 9 9 9 9 9 d 9 b 
+b 5 d 3 3 9 9 9 9 9 9 9 d d 9 b 
+. b 5 3 3 3 d 9 9 9 9 d d 5 b . 
+. b d 5 3 3 3 3 3 3 3 d 5 b b . 
+. . b d 5 d 3 3 3 3 5 5 b b . . 
+. . . b b 5 5 5 5 5 5 b b . . . 
+. . . . . b b b b b b . . . . . 
+`;
         }
         return null;
     })

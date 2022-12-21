@@ -29,6 +29,16 @@
         "mimeType": "image/x-mkcd-f4",
         "displayName": "emerald"
     },
+    "image5": {
+        "data": "hwQQABAAAAAAALC7uwsAAACwm5lVtQsAALvZPTNdvQCwm92ZPTPVC7DZmZmZM1MLm5mZmZk507WbmZmZmdkztZuZmZmZmTO1m5mZmZmZM7WbmRGRmZkztZuZEZGZmVO1sJkRkZnZXQuwm5kZmd21CwC7mZnZXbsAALCbmZm5CwAAALC7uwsAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "projectile1"
+    },
+    "image6": {
+        "data": "hwQQABAAAAAAALC7uwsAAACwm5lVtQsAALvZPTNdvQCwm92ZPTPVC7DZmZmZM1MLm5mZmZk507WbmZmZmdkztZuZmZmZmTO1m///mZmZM7Wbf/eRmZkztf9/9/+ZmVO1f3d395nZXQtvdmf2md21C/9/9//ZXbsAAG/2mZm5CwAA//+7uwsAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "projectileAdd1"
+    },
     "anim2": {
         "namespace": "myAnimations",
         "id": "anim2",

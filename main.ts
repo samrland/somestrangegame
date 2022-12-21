@@ -88,22 +88,31 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, () => {
 controller.combos.attachCombo("ududlrau+a", () => {
     let option = game.askForNumber("Level Selector. Choose a level: ", 1)
     if (option <= 7) {
-        if (option == 0) {
-            scene.setTileMapLevel(assets.tilemap`title-map`)
-        } else if (option == 1) {
-            scene.setTileMapLevel(assets.tilemap`level-1-map`)
-        } else if (option == 2) {
-            scene.setTileMapLevel(assets.tilemap`level-2-map`)
-        } else if (option == 3) {
-            scene.setTileMapLevel(assets.tilemap`level-3-map`)
-        } else if (option == 4) {
-            scene.setTileMapLevel(assets.tilemap`level-4-map`)
-        } else if (option == 5) {
-            scene.setTileMapLevel(assets.tilemap`level-5-map`)
-        } else if (option == 6) {
-            scene.setTileMapLevel(assets.tilemap`level-6-map`)
-        } else if (option == 7) {
-            scene.setTileMapLevel(assets.tilemap`level-7-map`)
+        switch (option) {
+            case 0:
+                scene.setTileMapLevel(assets.tilemap`title-map`)
+                break
+            case 1:
+                scene.setTileMapLevel(assets.tilemap`level-1-map`)
+                break
+            case 2:
+                scene.setTileMapLevel(assets.tilemap`level-2-map`)
+                break
+            case 3:
+                scene.setTileMapLevel(assets.tilemap`level-3-map`)
+                break
+            case 4:
+                scene.setTileMapLevel(assets.tilemap`level-4-map`)
+                break
+            case 5:
+                scene.setTileMapLevel(assets.tilemap`level-5-map`)
+                break
+            case 6:
+                scene.setTileMapLevel(assets.tilemap`level-6-map`)
+                break
+            case 7:
+                scene.setTileMapLevel(assets.tilemap`level-7-map`)
+                break
         }
         level = option
     } else {

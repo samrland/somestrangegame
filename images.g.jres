@@ -39,6 +39,11 @@
         "mimeType": "image/x-mkcd-f4",
         "displayName": "projectileAdd0"
     },
+    "image7": {
+        "data": "hwQQABAAAABP9CRP9CRP9E/y/0/y/0/yT/JET/JET/L//yT//yT//0/0JE/0JE/0T/L/T/L/T/JP8kRP8kRP8v//JP//JP//T/QkT/QkT/RP8v9P8v9P8k/yRE/yRE/y//8k//8k//9P9CRP9CRP9E/y/0/y/0/yT/JET/JET/L//yT//yT//w==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "brick"
+    },
     "anim2": {
         "namespace": "myAnimations",
         "id": "anim2",

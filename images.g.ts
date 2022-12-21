@@ -155,6 +155,25 @@ b 5 d 3 3 9 9 9 9 9 9 9 d d 9 b
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 `;
+            case "image7":
+            case "brick":return img`
+f f f f f f f f f f f f f f f f 
+4 4 4 f 4 4 4 f 4 4 4 f 4 4 4 f 
+4 2 2 f 4 2 2 f 4 2 2 f 4 2 2 f 
+f f f f f f f f f f f f f f f f 
+4 f 4 4 4 f 4 4 4 f 4 4 4 f 4 4 
+2 f 4 2 2 f 4 2 2 f 4 2 2 f 4 2 
+f f f f f f f f f f f f f f f f 
+4 4 4 f 4 4 4 f 4 4 4 f 4 4 4 f 
+4 2 2 f 4 2 2 f 4 2 2 f 4 2 2 f 
+f f f f f f f f f f f f f f f f 
+4 f 4 4 4 f 4 4 4 f 4 4 4 f 4 4 
+2 f 4 2 2 f 4 2 2 f 4 2 2 f 4 2 
+f f f f f f f f f f f f f f f f 
+4 4 4 f 4 4 4 f 4 4 4 f 4 4 4 f 
+4 2 2 f 4 2 2 f 4 2 2 f 4 2 2 f 
+f f f f f f f f f f f f f f f f 
+`;
         }
         return null;
     })

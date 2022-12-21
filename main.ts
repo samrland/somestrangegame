@@ -9,6 +9,36 @@ let musicOption = 1
 let level = 1
 let levelShake = true
 
+/* used to switch levels */
+const switchLevel = (option: number) => {
+    switch (option) {
+        case 0:
+            scene.setTileMapLevel(assets.tilemap`title-map`)
+            break
+        case 1:
+            scene.setTileMapLevel(assets.tilemap`level-1-map`)
+            break
+        case 2:
+            scene.setTileMapLevel(assets.tilemap`level-2-map`)
+            break
+        case 3:
+            scene.setTileMapLevel(assets.tilemap`level-3-map`)
+            break
+        case 4:
+            scene.setTileMapLevel(assets.tilemap`level-4-map`)
+            break
+        case 5:
+            scene.setTileMapLevel(assets.tilemap`level-5-map`)
+            break
+        case 6:
+            scene.setTileMapLevel(assets.tilemap`level-6-map`)
+            break
+        case 7:
+            scene.setTileMapLevel(assets.tilemap`level-7-map`)
+            break
+    }
+}
+
 // Setup
 // Music Setup
 forever(() => {
@@ -32,7 +62,7 @@ let player = sprites.create(assets.image`player`, SpriteKind.Player)
 controller.moveSprite(player) // setup controller
 info.setLife(3) // set lives
 scene.cameraFollowSprite(player) // camera follow player
-scene.setTileMapLevel(assets.tilemap`level1`)
+scene.setTileMapLevel(assets.tilemap`level-1-map`)
 let projectilesLeft = 10
 console.log("Setup sprite (player);")
 
@@ -88,32 +118,7 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, () => {
 controller.combos.attachCombo("ududlrau+a", () => {
     let option = game.askForNumber("Level Selector. Choose a level: ", 1)
     if (option <= 7) {
-        switch (option) {
-            case 0:
-                scene.setTileMapLevel(assets.tilemap`title-map`)
-                break
-            case 1:
-                scene.setTileMapLevel(assets.tilemap`level-1-map`)
-                break
-            case 2:
-                scene.setTileMapLevel(assets.tilemap`level-2-map`)
-                break
-            case 3:
-                scene.setTileMapLevel(assets.tilemap`level-3-map`)
-                break
-            case 4:
-                scene.setTileMapLevel(assets.tilemap`level-4-map`)
-                break
-            case 5:
-                scene.setTileMapLevel(assets.tilemap`level-5-map`)
-                break
-            case 6:
-                scene.setTileMapLevel(assets.tilemap`level-6-map`)
-                break
-            case 7:
-                scene.setTileMapLevel(assets.tilemap`level-7-map`)
-                break
-        }
+        switchLevel(option)
         level = option
     } else {
         console.log("Error: Number wrong;")
@@ -132,17 +137,17 @@ forever(() => {
 // Main Loop
 // Projectile Shooting
 controller.A.onEvent(ControllerButtonEvent.Pressed, () => {
-    // Shoot projectile towards direction moving
     if (projectilesLeft > 0) {
+        // record direction moving
         let directionX = controller.dx() * 100
         let directionY = controller.dy() * 100
+        // if not moving, set the directionX and directionY to shoot right
         if (directionX == 0 && directionY == 0) {
-            // if not moving, shoot right
-            let projectile = sprites.createProjectileFromSprite(assets.image`projectile0`, player, 100, 0)
-        } else {
-            // if moving, shoot in direction moving
-            let projectile = sprites.createProjectileFromSprite(assets.image`projectile0`, player, directionX, directionY)
+            directionX = 100
+            directionY = 0
         }
+        // create projectile in direction moving (or just right)
+        let projectile = sprites.createProjectileFromSprite(assets.image`projectile0`, player, directionX, directionY)
         projectilesLeft--
         console.log("Projectile shot;")
     } else {
@@ -208,30 +213,8 @@ sprites.onOverlap(SpriteKind.Player, emeraldKind, (playerItem: Sprite, emeraldIt
 
         // Next Level
         let upNext = level + 1
-        // let nextLevel = "level" + upNext
-        switch (upNext) {
-            case 1:
-                scene.setTileMapLevel(assets.tilemap`level-1-map`)
-                break
-            case 2:
-                scene.setTileMapLevel(assets.tilemap`level-2-map`)
-                break
-            case 3:
-                scene.setTileMapLevel(assets.tilemap`level-3-map`)
-                break
-            case 4:
-                scene.setTileMapLevel(assets.tilemap`level-4-map`)
-                break
-            case 5:
-                scene.setTileMapLevel(assets.tilemap`level-5-map`)
-                break
-            case 6:
-                scene.setTileMapLevel(assets.tilemap`level-6-map`)
-                break
-            case 7:
-                scene.setTileMapLevel(assets.tilemap`level-7-map`)
-                break
-        }
+        // let nextLevel = assets.image`level-${upNext}-map`
+        switchLevel(upNext)
         level++
     } else {
         console.log("Win;")

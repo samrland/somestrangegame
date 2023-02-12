@@ -1,6 +1,6 @@
 // Some Strange Game
 scene.setTileMapLevel(assets.tilemap`title-map`)
-game.splash("Some Strange Game", "the strangest of games")
+game.splash("Some Strange Game")
 console.log("Begin;")
 
 let gameMusic = "C:2 D:2 E:2 F:2 G:8 G:2 F:2 E:2 D:2 E:4 D:4 C:4 C:2 D:2 E:2 F:2 G:2 G:2 F:2 E:2 D:2 E:4 D:4 C:4"
@@ -78,7 +78,7 @@ spriteSetRandPos(apple)
 
 // +1 Projectile Setup
 let projectileAddKind = SpriteKind.create()
-let projectileAdd = sprites.create(assets.image`projectileAdd0`, projectileAddKind)
+let projectileAdd = sprites.create(assets.image`projectile-add`, projectileAddKind)
 spriteSetRandPos(projectileAdd)
 
 // Emerald Setup
@@ -91,7 +91,7 @@ spriteSetRandPos(emerald)
 
 // Menu
 controller.B.onEvent(ControllerButtonEvent.Pressed, () => {
-    let option = game.askForNumber("Menu. [1] Music [2] Level Shake [0] Close", 1)
+    let option = game.askForNumber("Menu. [1] Music [2] Shake [0] Close", 1)
     if (option == 1) {
         let musicOptionT = game.askForNumber("Choose 1 or 2", 1)
         if (musicOptionT == 1) {
@@ -147,7 +147,7 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, () => {
             directionY = 0
         }
         // create projectile in direction moving (or just right)
-        let projectile = sprites.createProjectileFromSprite(assets.image`projectile0`, player, directionX, directionY)
+        let projectile = sprites.createProjectileFromSprite(assets.image`projectile`, player, directionX, directionY)
         projectilesLeft--
         console.log("Projectile shot;")
     } else {
@@ -189,7 +189,7 @@ sprites.onOverlap(SpriteKind.Player, projectileAddKind, (playerItem: Sprite, pro
     console.log("projectileAdd picked up by player;")
     playerItem.sayText("Yeah!", 500, true)
     music.playSound("C:1 G:1")
-    animation.runImageAnimation(playerItem, assets.animation`projectileAddAnim0`, 200, false)
+    animation.runImageAnimation(playerItem, assets.animation`projectile-add-anim`, 200, false)
     spriteSetRandPos(projectileAddItem)
     projectilesLeft++
 })
@@ -232,6 +232,6 @@ sprites.onOverlap(SpriteKind.Player, emeraldKind, (playerItem: Sprite, emeraldIt
         effects.confetti.startScreenEffect(120000)
 
         // credits
-        player.sayText("Thanks for playing! This game was created by @samrpf on GitHub. You can find more of their creations at samrpf.repl.co.", 30000, true)
+        player.sayText("Thanks for playing!", 3000, true)
     }
 })

@@ -1,4 +1,5 @@
 // Some Strange Game
+scene.setBackgroundImage(assets.image`backgroundImage`)
 scene.setTileMapLevel(assets.tilemap`title-map`)
 game.splash("Some Strange Game")
 console.log("Begin;")

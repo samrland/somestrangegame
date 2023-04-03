@@ -9,33 +9,47 @@ let musicOption = 1
 let level = 1
 let levelShake = true
 
+const levelAmount = 9;
+
 /* used to switch levels */
 const switchLevel = (option: number) => {
-    switch (option) {
-        case 0:
-            scene.setTileMapLevel(assets.tilemap`title-map`)
-            break
-        case 1:
-            scene.setTileMapLevel(assets.tilemap`level-1-map`)
-            break
-        case 2:
-            scene.setTileMapLevel(assets.tilemap`level-2-map`)
-            break
-        case 3:
-            scene.setTileMapLevel(assets.tilemap`level-3-map`)
-            break
-        case 4:
-            scene.setTileMapLevel(assets.tilemap`level-4-map`)
-            break
-        case 5:
-            scene.setTileMapLevel(assets.tilemap`level-5-map`)
-            break
-        case 6:
-            scene.setTileMapLevel(assets.tilemap`level-6-map`)
-            break
-        case 7:
-            scene.setTileMapLevel(assets.tilemap`level-7-map`)
-            break
+    if (option <= levelAmount) {
+        switch (option) {
+            case 0:
+                scene.setTileMapLevel(assets.tilemap`title-map`)
+                break
+            case 1:
+                scene.setTileMapLevel(assets.tilemap`level-1-map`)
+                break
+            case 2:
+                scene.setTileMapLevel(assets.tilemap`level-2-map`)
+                break
+            case 3:
+                scene.setTileMapLevel(assets.tilemap`level-3-map`)
+                break
+            case 4:
+                scene.setTileMapLevel(assets.tilemap`level-4-map`)
+                break
+            case 5:
+                scene.setTileMapLevel(assets.tilemap`level-5-map`)
+                break
+            case 6:
+                scene.setTileMapLevel(assets.tilemap`level-6-map`)
+                break
+            case 7:
+                scene.setTileMapLevel(assets.tilemap`level-7-map`)
+                break
+            case 8:
+                scene.setTileMapLevel(assets.tilemap`level-8-map`)
+                break
+            case 9:
+                scene.setTileMapLevel(assets.tilemap`level-9-map`)
+                break
+        }
+        return 0
+    } else {
+        console.log("Number wrong;")
+        return 1
     }
 }
 
@@ -57,6 +71,7 @@ const spriteSetRandPos = (sprite: Sprite) => {
     let randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
     sprite.setPosition(randomLocationX, randomLocationY)
 }
+
 // Player Setup
 let player = sprites.create(assets.image`player`, SpriteKind.Player)
 controller.moveSprite(player) // setup controller
@@ -68,9 +83,12 @@ console.log("Setup sprite (player);")
 
 // Enemy Setup
 let enemy = sprites.create(assets.image`enemy`, SpriteKind.Enemy)
-enemy.follow(player, 50, 50) // make enemy follow player
 spriteSetRandPos(enemy)
 let enemyLives = 5
+let enemySpeed = 50;
+forever(() => {
+    enemy.follow(player, enemySpeed, 50) // make enemy follow player
+})
 
 // Apple Setup
 let apple = sprites.create(assets.image`apple`, SpriteKind.Food)
@@ -117,7 +135,7 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, () => {
 // Secret Menu
 controller.combos.attachCombo("ududlrau+a", () => {
     let option = game.askForNumber("Level Selector. Choose a level: ", 1)
-    if (option <= 7) {
+    if (option <= levelAmount) {
         switchLevel(option)
         level = option
     } else {
@@ -204,7 +222,7 @@ sprites.onOverlap(SpriteKind.Player, emeraldKind, (playerItem: Sprite, emeraldIt
     }
 
     // go to next level
-    if (level < 7) {
+    if (level < levelAmount) {
         // set random locations
         spriteSetRandPos(apple)
         spriteSetRandPos(enemy)

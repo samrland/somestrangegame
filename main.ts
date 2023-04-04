@@ -10,12 +10,15 @@ let musicOption = 1
 let level = 1
 let levelShake = true
 
-const levelAmount = 9;
+const levelAmount = 10
 
 /* used to switch levels */
 const switchLevel = (option: number) => {
     if (option <= levelAmount) {
         switch (option) {
+            case -1:
+                scene.setTileMapLevel(assets.tilemap`testing-map`)
+                break
             case 0:
                 scene.setTileMapLevel(assets.tilemap`title-map`)
                 break
@@ -46,11 +49,12 @@ const switchLevel = (option: number) => {
             case 9:
                 scene.setTileMapLevel(assets.tilemap`level-9-map`)
                 break
+            case 10:
+                scene.setTileMapLevel(assets.tilemap`level-10-map`)
+                break
         }
-        return 0
     } else {
         console.log("Number wrong;")
-        return 1
     }
 }
 
@@ -71,6 +75,7 @@ const spriteSetRandPos = (sprite: Sprite) => {
     let randomLocationX = Math.floor(Math.randomRange(0, 64) * 4)
     let randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
     sprite.setPosition(randomLocationX, randomLocationY)
+    // tiles.placeOnRandomTile(sprite, assets.tile`grass`) // seems interesting, but tested and doesn't really follow the `grass` rule
 }
 
 // Player Setup
@@ -80,7 +85,6 @@ info.setLife(3) // set lives
 scene.cameraFollowSprite(player) // camera follow player
 scene.setTileMapLevel(assets.tilemap`level-1-map`)
 let projectilesLeft = 10
-console.log("Setup sprite (player);")
 
 // Enemy Setup
 let enemy = sprites.create(assets.image`enemy`, SpriteKind.Enemy)
@@ -104,7 +108,7 @@ spriteSetRandPos(projectileAdd)
 let emeraldKind = SpriteKind.create()
 let emerald = sprites.create(assets.image`emerald`, emeraldKind)
 game.onUpdateInterval(1000, () => {
-    animation.runImageAnimation(emerald, assets.animation`emeraldShine`, 200, false)
+    animation.runImageAnimation(emerald, assets.animation`anim-emerald-shine`, 200, false)
 })
 spriteSetRandPos(emerald)
 
@@ -135,7 +139,7 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, () => {
 
 // Secret Menu
 controller.combos.attachCombo("ududlrau+a", () => {
-    let option = game.askForNumber("Level Selector. Choose a level: ", 1)
+    let option = game.askForNumber("Level Selector. Choose a level: ", 2)
     if (option <= levelAmount) {
         switchLevel(option)
         level = option
@@ -158,15 +162,15 @@ forever(() => {
 controller.A.onEvent(ControllerButtonEvent.Pressed, () => {
     if (projectilesLeft > 0) {
         // record direction moving
-        let directionX = controller.dx() * 100
-        let directionY = controller.dy() * 100
+        let velocityX = controller.dx() * 100
+        let velocityY = controller.dy() * 100
         // if not moving, set the directionX and directionY to shoot right
-        if (directionX == 0 && directionY == 0) {
-            directionX = 100
-            directionY = 0
+        if (velocityX == 0 && velocityY == 0) {
+            velocityX = 100
+            velocityY = 0
         }
         // create projectile in direction moving (or just right)
-        let projectile = sprites.createProjectileFromSprite(assets.image`projectile`, player, directionX, directionY)
+        let projectile = sprites.createProjectileFromSprite(assets.image`projectile`, player, velocityX, velocityY)
         projectilesLeft--
         console.log("Projectile shot;")
     } else {
@@ -180,7 +184,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, (playerItem: Sprite, foodI
     console.log("food eaten by player;")
     playerItem.sayText("Tasty!", 500, true)
     music.playSound("C:1 G:1")
-    animation.runImageAnimation(playerItem, assets.animation`eating`, 200, false) // eating animation
+    animation.runImageAnimation(playerItem, assets.animation`anim-player-eating`, 200, false) // eating animation
     info.changeLifeBy(+1) // add 1 life
     spriteSetRandPos(foodItem) // randpos food
 })
@@ -208,7 +212,7 @@ sprites.onOverlap(SpriteKind.Player, projectileAddKind, (playerItem: Sprite, pro
     console.log("projectileAdd picked up by player;")
     playerItem.sayText("Yeah!", 500, true)
     music.playSound("C:1 G:1")
-    animation.runImageAnimation(playerItem, assets.animation`projectile-add-anim`, 200, false)
+    animation.runImageAnimation(playerItem, assets.animation`anim-player-projectileadd`, 200, false)
     spriteSetRandPos(projectileAddItem)
     projectilesLeft++
 })
@@ -229,6 +233,8 @@ sprites.onOverlap(SpriteKind.Player, emeraldKind, (playerItem: Sprite, emeraldIt
         spriteSetRandPos(enemy)
         spriteSetRandPos(projectileAdd)
         spriteSetRandPos(emerald)
+
+        enemySpeed += 5
 
         // Next Level
         let upNext = level + 1

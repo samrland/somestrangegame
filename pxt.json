@@ -1,5 +1,5 @@
 {
-    "name": "SomeStrangeGame",
+    "name": "SomeStrangeGame - Copy",
     "version": "0.9.0",
     "description": "",
     "dependencies": {
@@ -22,7 +22,7 @@
         "test.ts"
     ],
     "targetVersions": {
-        "target": "1.12.26",
+        "target": "1.12.30",
         "targetId": "arcade"
     },
     "supportedTargets": [

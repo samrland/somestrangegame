@@ -10,7 +10,7 @@ let musicOption = 1
 let level = 1
 let levelShake = true
 
-const levelAmount = 10
+const levelAmount = 11
 
 /* used to switch levels */
 const switchLevel = (option: number) => {
@@ -52,6 +52,9 @@ const switchLevel = (option: number) => {
             case 10:
                 scene.setTileMapLevel(assets.tilemap`level-10-map`)
                 break
+            case 11:
+                scene.setTileMapLevel(assets.tilemap`level-11-map`)
+                break
         }
     } else {
         console.log("Number wrong;")
@@ -69,11 +72,13 @@ forever(() => {
 })
 console.log("Music started;")
 
+const imageKind = SpriteKind.create()
+
 // Sprite Creation
 /* used to set a random position for sprites */
 const spriteSetRandPos = (sprite: Sprite) => {
-    let randomLocationX = Math.floor(Math.randomRange(0, 64) * 4)
-    let randomLocationY = Math.floor(Math.randomRange(0, 64) * 4)
+    let randomLocationX = Math.floor(Math.randomRange(0, tiles.tilemapRows()) * 16)
+    let randomLocationY = Math.floor(Math.randomRange(0, tiles.tilemapColumns()) * 16)
     sprite.setPosition(randomLocationX, randomLocationY)
     // tiles.placeOnRandomTile(sprite, assets.tile`grass`) // seems interesting, but tested and doesn't really follow the `grass` rule
 }
@@ -238,7 +243,9 @@ sprites.onOverlap(SpriteKind.Player, emeraldKind, (playerItem: Sprite, emeraldIt
 
         // Next Level
         let upNext = level + 1
+        // let nextLevel = assets.tilemap(`level-${upNext}-map`)
         // let nextLevel = assets.image`level-${upNext}-map`
+        // scene.setTileMapLevel(nextLevel)
         switchLevel(upNext)
         level++
     } else {

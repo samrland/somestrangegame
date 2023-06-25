@@ -13,7 +13,7 @@ let levelShake = true
 const levelAmount = 11
 
 /* used to switch levels */
-const switchLevel = (option: number) => {
+function switchLevel(option: number) {
     if (option <= levelAmount) {
         switch (option) {
             case -1:
@@ -61,6 +61,13 @@ const switchLevel = (option: number) => {
     }
 }
 
+function reroll() {
+    spriteSetRandPos(apple)
+    spriteSetRandPos(enemy)
+    spriteSetRandPos(projectileAdd)
+    spriteSetRandPos(emerald)
+}
+
 // Setup
 // Music Setup
 forever(() => {
@@ -72,11 +79,22 @@ forever(() => {
 })
 console.log("Music started;")
 
+let originalMusicOption = musicOption
+function pauseMusic() {
+    originalMusicOption = musicOption
+    music.stopAllSounds()
+    musicOption = 0
+}
+
+function resumeMusic() {
+    musicOption = originalMusicOption
+}
+
 const imageKind = SpriteKind.create()
 
 // Sprite Creation
 /* used to set a random position for sprites */
-const spriteSetRandPos = (sprite: Sprite) => {
+function spriteSetRandPos(sprite: Sprite) {
     let randomLocationX = Math.floor(Math.randomRange(0, tiles.tilemapRows()) * 16)
     let randomLocationY = Math.floor(Math.randomRange(0, tiles.tilemapColumns()) * 16)
     sprite.setPosition(randomLocationX, randomLocationY)
@@ -85,19 +103,29 @@ const spriteSetRandPos = (sprite: Sprite) => {
 
 // Player Setup
 let player = sprites.create(assets.image`player`, SpriteKind.Player)
-controller.moveSprite(player) // setup controller
+// controller.moveSprite(player) // setup controller
 info.setLife(3) // set lives
 scene.cameraFollowSprite(player) // camera follow player
 scene.setTileMapLevel(assets.tilemap`level-1-map`)
 let projectilesLeft = 10
+game.onUpdate(() => {
+    if (!menuIsVisible) {
+        player.x += controller.dx() /* 1.1 */
+        player.y += controller.dy() /* 1.1 */
+    }
+})
 
 // Enemy Setup
 let enemy = sprites.create(assets.image`enemy`, SpriteKind.Enemy)
 spriteSetRandPos(enemy)
 let enemyLives = 5
-let enemySpeed = 50;
+let enemySpeed = 50
 forever(() => {
-    enemy.follow(player, enemySpeed, 50) // make enemy follow player
+    if (!menuIsVisible) {
+        enemy.follow(player, enemySpeed, 50)
+    } else {
+        enemy.follow(null, 0, 0)
+    }
 })
 
 // Apple Setup
@@ -118,29 +146,83 @@ game.onUpdateInterval(1000, () => {
 spriteSetRandPos(emerald)
 
 // Menu
-controller.B.onEvent(ControllerButtonEvent.Pressed, () => {
-    let option = game.askForNumber("Menu. [1] Music [2] Shake [0] Close", 1)
-    if (option == 1) {
-        let musicOptionT = game.askForNumber("Choose 1 or 2", 1)
-        if (musicOptionT == 1) {
-            music.stopAllSounds()
-            musicOption = 1
-        } else if (musicOptionT == 2) {
-            music.stopAllSounds()
-            musicOption = 2
-        } else {
-            console.log("Error: Number wrong;")
-            game.ask("Error: Number wrong")
-        }
-    } else if (option == 2) {
-        levelShake = game.ask("Turn on shake on level switch?")
-    } else if (option == 0) {
-        console.log("Menu closed;")
-    } else {
-        console.log("Error: Number wrong;")
-        game.ask("Error: Number wrong")
+// controller.B.onEvent(ControllerButtonEvent.Pressed, menu)
+let menuIsVisible = false
+controller.menu.onEvent(ControllerButtonEvent.Pressed, menu)
+
+function menu() {
+    if (!(menuIsVisible)) {
+        menuIsVisible = true
+        pauseMusic()
+        controller.moveSprite(null)
+
+        const menuSprite = miniMenu.createMenuFromArray([
+            miniMenu.createMenuItem("Music", assets.image`icon-music`),
+            miniMenu.createMenuItem("Shake", assets.image`icon-none`),
+            miniMenu.createMenuItem("Reroll", assets.image`icon-reroll`),
+            miniMenu.createMenuItem("Debug", assets.image`icon-information`),
+            miniMenu.createMenuItem("Close", assets.image`icon-close`),
+        ])
+        menuSprite.setTitle("Game Menu")
+        menuSprite.setDimensions((scene.screenWidth() - 30), (scene.screenHeight() - 30))
+        menuSprite.setPosition(scene.cameraProperty(CameraProperty.Left) + 15, scene.cameraProperty(CameraProperty.Top) + 15)
+        scene.cameraFollowSprite(null)
+
+        // menuSprite.setMenuStyleProperty(miniMenu.MenuStyleProperty.Padding, 4)
+        // menuSprite.setMenuStyleProperty(miniMenu.MenuStyleProperty.Border, 1)
+        // menuSprite.setMenuStyleProperty(miniMenu.MenuStyleProperty.BorderColor, 2)
+        // menuSprite.setMenuStyleProperty(miniMenu.MenuStyleProperty.Rows, 2)
+        // menuSprite.setMenuStyleProperty(miniMenu.MenuStyleProperty.Columns, 2)
+
+        // menuSprite.onSelectionChanged(function (_selection, _selectedIndex) {
+        //     // music.ringTone(Note.E)
+        //     music.tonePlayable(Note.E, BeatFraction.Quarter)
+        // })
+
+        menuSprite.onButtonPressed(controller.A, function (selection, _selectedIndex) {
+            // music.ringTone(Note.G)
+            // music.tonePlayable(Note.G, BeatFraction.Quarter)
+            switch (selection) {
+                default: {
+                    break
+                }
+                case "Music": {
+                    let musicOptionT = game.askForNumber("Choose 1 or 2", 1)
+                    if (musicOptionT == 1) {
+                        music.stopAllSounds()
+                        musicOption = 1
+                    } else if (musicOptionT == 2) {
+                        music.stopAllSounds()
+                        musicOption = 2
+                    } else {
+                        console.log("Error: Number wrong;")
+                        game.ask("Error: Number wrong")
+                    }
+                    break
+                }
+                case "Shake": {
+                    levelShake = game.ask("Would you like to shake on level switch?")
+                    break
+                }
+                case "Reroll": {
+                    if (game.ask("Are you sure you want to reroll this level?"))
+                        reroll()
+                    break
+                }
+                case "Debug": {
+                    info.setLife(9999)
+                    break
+                }
+            }
+
+            menuSprite.close()
+            menuIsVisible = false
+            resumeMusic()
+            scene.cameraFollowSprite(player)
+            controller.moveSprite(player)
+        })
     }
-}) 
+}
 
 // Secret Menu
 controller.combos.attachCombo("ududlrau+a", () => {
@@ -165,22 +247,24 @@ forever(() => {
 // Main Loop
 // Projectile Shooting
 controller.A.onEvent(ControllerButtonEvent.Pressed, () => {
-    if (projectilesLeft > 0) {
-        // record direction moving
-        let velocityX = controller.dx() * 100
-        let velocityY = controller.dy() * 100
-        // if not moving, set the directionX and directionY to shoot right
-        if (velocityX == 0 && velocityY == 0) {
-            velocityX = 100
-            velocityY = 0
+    if (!menuIsVisible) {
+        if (projectilesLeft > 0) {
+            // record direction moving
+            let velocityX = controller.dx() * 100
+            let velocityY = controller.dy() * 100
+            // if not moving, set the directionX and directionY to shoot right
+            if (velocityX == 0 && velocityY == 0) {
+                velocityX = 100
+                velocityY = 0
+            }
+            // create projectile in direction moving (or just right)
+            let projectile = sprites.createProjectileFromSprite(assets.image`projectile`, player, velocityX, velocityY)
+            projectilesLeft--
+            console.log("Projectile shot;")
+        } else {
+            music.playSound("C:1")
+            console.log("No projectiles left;")
         }
-        // create projectile in direction moving (or just right)
-        let projectile = sprites.createProjectileFromSprite(assets.image`projectile`, player, velocityX, velocityY)
-        projectilesLeft--
-        console.log("Projectile shot;")
-    } else {
-        music.playSound("C:1")
-        console.log("No projectiles left;")
     }
 })
 
@@ -234,10 +318,7 @@ sprites.onOverlap(SpriteKind.Player, emeraldKind, (playerItem: Sprite, emeraldIt
     // go to next level
     if (level < levelAmount) {
         // set random locations
-        spriteSetRandPos(apple)
-        spriteSetRandPos(enemy)
-        spriteSetRandPos(projectileAdd)
-        spriteSetRandPos(emerald)
+        reroll()
 
         enemySpeed += 5
 

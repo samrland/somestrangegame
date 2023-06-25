@@ -281,6 +281,61 @@ eeddeeeeeeeeeeeeeeeeeee
 ........eeeeeeeee......
 ........eeeeeeeee......
 `;
+            case "image13":
+            case "icon-reroll":return img`
+. b b b b b b . 
+b f f d d d d b 
+b f d d d d d b 
+b d d f f d d b 
+b d d f d d d b 
+b d d d d f f b 
+b d d d d f d f 
+. b b b b f f . 
+`;
+            case "image8":
+            case "icon-music":return img`
+. . . . 9 . . . 
+. . . . 9 8 . . 
+. . . . 8 . 8 . 
+. 9 9 8 8 . 8 . 
+9 8 8 8 8 . . . 
+9 8 8 8 f . . . 
+8 8 8 8 f . . . 
+. f f f . . . . 
+`;
+            case "image11":
+            case "icon-close":return img`
+3 3 . . . . 3 2 
+3 2 2 . . 3 2 2 
+. 2 2 2 2 2 2 f 
+. . 2 2 2 2 f . 
+. . 2 2 2 2 . . 
+. 3 2 2 2 2 2 . 
+3 2 f . . 2 2 f 
+2 f . . . . f f 
+`;
+            case "image12":
+            case "icon-none":return img`
+. . . . . . . . 
+. . . . . . . . 
+. . . . . . . . 
+. . . . . . . . 
+. . . . . . . . 
+. . . . . . . . 
+. . . . . . . . 
+. . . . . . . . 
+`;
+            case "image14":
+            case "icon-information":return img`
+. . . 9 8 . . . 
+. . . 8 8 . . . 
+. . . . . . . . 
+. . 9 9 8 . . . 
+. . 9 8 8 . . . 
+. . . 8 8 . . . 
+. 8 8 8 8 8 f . 
+. 8 f f f f f . 
+`;
         }
         return null;
     })

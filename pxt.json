@@ -1,5 +1,5 @@
 {
-    "name": "SomeStrangeGame - Copy",
+    "name": "SomeStrangeGame",
     "version": "0.9.0",
     "description": "",
     "dependencies": {
@@ -7,7 +7,11 @@
         "color-coded-tilemap": "*",
         "controller": "*",
         "pxt-button-combos": "github:jwunderl/pxt-button-combos#v0.0.24",
-        "tilemaps": "github:microsoft/pxt-tilemaps#v1.12.0"
+        "tilemaps": "github:microsoft/pxt-tilemaps#v1.12.0",
+        "arcade-story": "github:microsoft/arcade-storytelling#v1.0.3",
+        "Sprite Grid": "github:microsoft/arcade-grid#v1.3.0",
+        "arcade-mini-menu": "github:riknoll/arcade-mini-menu#c8b01b9d47f85a5133c786f1c026b1f376fe4285",
+        "arcade-sprite-data": "github:microsoft/arcade-sprite-data#v0.2.1"
     },
     "files": [
         "main.ts",
@@ -16,7 +20,8 @@
         "images.g.jres",
         "images.g.ts",
         "tilemap.g.jres",
-        "tilemap.g.ts"
+        "tilemap.g.ts",
+        "CHANGELOG.md"
     ],
     "testFiles": [
         "test.ts"
@@ -28,5 +33,23 @@
     "supportedTargets": [
         "arcade"
     ],
-    "preferredEditor": "tsprj"
+    "preferredEditor": "tsprj",
+    "palette": [
+        "#000000",
+        "#FFFFFF",
+        "#FF2121",
+        "#FF93C4",
+        "#FF8135",
+        "#FFF609",
+        "#249CA3",
+        "#78DC52",
+        "#003FAD",
+        "#87F2FF",
+        "#8E2EC4",
+        "#A4839F",
+        "#5C406c",
+        "#E5CDC4",
+        "#91463d",
+        "#000000"
+    ]
 }

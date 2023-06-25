@@ -44,6 +44,31 @@
         "mimeType": "image/x-mkcd-f4",
         "displayName": "sign"
     },
+    "image13": {
+        "data": "hwQIAAgAAACwu7sL+9/dvfvd3b3b/d+92/3dvdvd/f/b3f39sLu7Dw==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "icon-reroll"
+    },
+    "image8": {
+        "data": "hwQIAAgAAAAAAJkIAJCI+ACQiPgAgIj4mYj4D4AAAAAAiAAAAAAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "icon-music"
+    },
+    "image11": {
+        "data": "hwQIAAgAAAAzAAAjIwIw8iAiIg8AIiIAACIiADAiIgIj8iDyIg8A/w==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "icon-close"
+    },
+    "image12": {
+        "data": "hwQIAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "icon-none"
+    },
+    "image14": {
+        "data": "hwQIAAgAAAAAAAAAAAAAiACQCfiJkIj4iICI+AAAAPgAAAD/AAAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "icon-information"
+    },
     "anim4": {
         "namespace": "myAnimations",
         "id": "anim4",

@@ -69,6 +69,11 @@
         "mimeType": "image/x-mkcd-f4",
         "displayName": "icon-information"
     },
+    "image15": {
+        "data": "hwQQABAAAACIiFiIiIiIiIiIiIiIhYiIiIiIiIiIiIiIiIhYiIiIiIiIiIiIuIiIWIiIiIiIiIiIiIiIiIiIhYiIiIiIiIiIiFhViIiIiIiIVVWFiIiIiIiFyMWIiIiIiIyIxYiIiIuIiMiFiIi4tYiIWIyIi4iLiIiIiIWIiIiIiIiIiIiIiA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "starry-night"
+    },
     "anim4": {
         "namespace": "myAnimations",
         "id": "anim4",

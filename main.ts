@@ -219,7 +219,7 @@ function menu() {
             menuIsVisible = false
             resumeMusic()
             scene.cameraFollowSprite(player)
-            controller.moveSprite(player)
+            // controller.moveSprite(player)
         })
     }
 }

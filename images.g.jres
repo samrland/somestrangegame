@@ -74,6 +74,21 @@
         "mimeType": "image/x-mkcd-f4",
         "displayName": "starry-night"
     },
+    "image17": {
+        "data": "hwQQABAAAADwDwAAAAAAAA8AAAAAAAAAD2BmZsYAAAAAZmd2xgAAAAB2ZmfGAAAAAGZmZsYAAAAAZnZmxgAAAABmZ3bGAAAAAGZmZ8YAAAAAzMzMbPAAAAAAAAAA8HAGAAAAAPAPAGcAAAAAAAAAcAAAAAAAAHBnAAAAAABwZwAAAAAAcGcAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "icon-shake-on"
+    },
+    "image16": {
+        "data": "hwQQABAAAADwDwAAAAAAAA8AAAAAAAAAD2BmZsYAAAAAZmd2xgAAAAB2ZmfGAAAAAGZmZsYAAAAAZnZmxgAAAABmZ3bGAAAAAGZmZ8YAAAAAzMzMbPAAAAAAAAAA8AAAAAAAAPAPAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "icon-shake-base"
+    },
+    "image18": {
+        "data": "hwQQABAAAADwDwAAAAAAAA8AAAAAAAAAD2BmZsYAAAAAZmd2xgAAAAB2ZmfGAAAAAGZmZsYAAAAAZnZmxgAAAABmZ3bGAAAAAGZmZ8YAAAAAzMzMbPAAAAAAAAAA8AAAAAAAAPAPAAAAAAAAADACIwAAAAAAACMCAAAAAAAAMwIAAAAAADACIw==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "icon-shake-off"
+    },
     "anim4": {
         "namespace": "myAnimations",
         "id": "anim4",
